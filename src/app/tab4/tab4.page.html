@@ -1,0 +1,180 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #672438; ">
+
+    <ion-title style="text-align: left;" (click)="onFotoPerfil()">
+      <img src="../../assets/image/logo.fw.png" alt="CheckKm" style="height: 60px; margin-left: 10px;">
+    </ion-title>
+
+    <ion-buttons slot="end" style="margin-top: -10px;">
+      <ion-button (click)="onCadastro()" style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="checkmark-done-outline" style="font-size: 26px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: #672438;">
+    <div class="user-header">
+      <div class="user-info">
+        <div class="user-name">
+          <h2>{{ _regCliente != undefined ? _regCliente.nome : 'Carregando...'}}</h2>
+          <p class="user-company">
+            {{ _regCliente != undefined ? _regCliente.endereco.cidade +'/'+ _regCliente.endereco.estado :
+            'Carregando...' }}
+          </p>
+          <p class="user-points">
+            <ion-icon name="flash-outline"></ion-icon> 100 pts
+          </p>
+        </div>
+      </div>
+      <div class="user-avatar" style="position: relative;">
+        <img
+          src="{{ _regCliente != undefined ?_regCliente._foto : 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg' }}"
+          (click)="onFotoPerfil()">
+
+        <!-- Botão sobre a foto -->
+        <ion-fab-button size="small" class="avatar-btn" (click)="onFotoPerfil()">
+          <ion-icon name="camera-outline" style="font-size: 20px;"></ion-icon>
+        </ion-fab-button>
+      </div>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: #672438;  margin-top: -15px; height: 33px;  ">
+    <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="--background: #F5F5F5;  ">
+
+  <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="auto">
+        <div class="greeting">
+          <p>Perfil</p>
+          <h2 style="color: #56619A;">Dados Pessoais</h2>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="_regCliente != undefined" class="formulario">
+    <ion-item>
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input [(ngModel)]="_regCliente._nome" placeholder="Digite o nome da oficina"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Sobrenome</ion-label>
+      <ion-input [(ngModel)]="_regCliente._sobrenome" placeholder="Digite o nome da oficina"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Celular</ion-label>
+      <ion-input [(ngModel)]="_regCliente.celular" placeholder="(00) 00000-0000" [maskito]="phoneMask"
+        [maskitoElement]="maskPredicate" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Telefone</ion-label>
+      <ion-input [(ngModel)]="_regCliente.telefone" placeholder="(00) 00000-0000" [maskito]="phoneMask"
+        [maskitoElement]="maskPredicate" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="_regCliente.email" placeholder="Digite seu email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Documento</ion-label>
+      <ion-input [(ngModel)]="_regCliente.documento" [maskito]="cpfMask" [maskitoElement]="maskPredicate"
+        placeholder="000.000.000-00" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Aniversário</ion-label>
+      <ion-input [(ngModel)]="_regCliente.data_nascimento" type="date"></ion-input>
+    </ion-item>
+
+    <br>
+    <ion-grid style="margin-bottom: 10px;">
+      <ion-row class="align-center-space-between">
+        <ion-col size="auto">
+          <div class="greeting">
+            <p>🏠</p>
+            <h2 style="color: #56619A ;">Meu Endereço</h2>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item class="mt-4">
+      <ion-label position="stacked">CEP</ion-label>
+      <ion-input [(ngModel)]="_regCliente.cep" [maskito]="cepMask" [maskitoElement]="maskPredicate"
+        placeholder="00.000-000" type="tel">
+      </ion-input>
+
+      <ion-button fill="clear" slot="end" (click)="onBuscaCep()">
+        <ion-icon slot="icon-only" name="search" color="secondary"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rua, Avenida ...</ion-label>
+      <ion-input [(ngModel)]="_regCliente.logradouro" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Número</ion-label>
+      <ion-input [(ngModel)]="_regCliente.numero" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Complemento</ion-label>
+      <ion-input [(ngModel)]="_regCliente.complemento" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Bairro</ion-label>
+      <ion-input [(ngModel)]="_regCliente.bairro" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Cidade</ion-label>
+      <ion-input [(ngModel)]="_regCliente.cidade" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Estado</ion-label>
+      <ion-input [(ngModel)]="_regCliente.estado" type="text"></ion-input>
+    </ion-item>
+
+    <br>
+    <ion-grid style="margin-bottom: 10px;">
+      <ion-row class="align-center-space-between">
+        <ion-col size="auto">
+          <div class="greeting">
+            <p>😍</p>
+            <h2 style="color: #e63946 ;">Interesses</h2>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item *ngFor="let item of _regSegmentos; let i = index" style="margin-top: -10px;">
+      <ion-checkbox justify="space-between" [checked]="isChecked(item._id)"
+        (ionChange)="toggleSegmento(item._id, $event.detail.checked)">
+        {{ item.segmento }}
+      </ion-checkbox>
+    </ion-item>
+
+  </div>
+
+  <div style="min-height: 200px; text-align: center;">
+  </div>
+
+</ion-content>

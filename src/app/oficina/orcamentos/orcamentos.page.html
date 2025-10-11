@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <p
+        style="font-size: 15px; font-weight: bold; font-family: 'Muli'; letter-spacing: 1px; margin-left: -20px; opacity: 0.9;">
+        Orçamentos
+      </p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="text-center">
+    <img src="../../assets/image/barra_orcamentos.png" alt="Cadastrar veículo"
+      style="height: auto; width: 100%; object-fit: cover; margin-top: -10px;" />
+  </div>
+  
+  <ion-list [inset]="true" mode="ios">
+
+    <ion-item *ngFor="let item of _regOrcamentos; let i = index" (click)="onOrcamento(item)" [button]="true" detail="false">
+      <div class="unread-indicator-wrapper" slot="start">
+        <div class="unread-indicator"></div>
+      </div>
+      <ion-label style="font-family: 'MuliBold'; font-size: 11px;">
+        <strong>
+          {{ item.id_veiculo.marca }}
+          <span style="color: #ffa62b">{{ item.id_veiculo.ano }}</span>
+        </strong><br>
+        <ion-text>
+          {{ item.id_veiculo.modelo }}
+        </ion-text><br />
+
+        <ion-note style="font-family: 'MuliBold'; font-size: 9px; text-transform: uppercase;" color="medium"
+          class="ion-text-wrap">
+          Manutenção: {{ item.id_servico.quilometragem | number: '1.0-0' }}km
+        </ion-note>
+      </ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-note color="medium" >
+          <ion-badge color="warning" style="font-family: 'MuliBold'; font-size: 10px; text-transform: uppercase;"> 
+            {{ formataData(item.data_propostal) }}
+          </ion-badge>
+        </ion-note>
+        <ion-icon color="medium" name="chevron-forward"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

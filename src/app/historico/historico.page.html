@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <!-- Ícone e Nome do lado esquerdo -->
+    <ion-buttons slot="start" style="opacity: 0.6;">
+      <ion-icon name="document-lock-outline" style="font-size: 20px; margin-right: 8px; margin-left: 5px; "></ion-icon>
+      <span style="font-size: 15px; font-weight: bold; font-family: 'Muli'; letter-spacing: 1px;">Histórico</span>
+    </ion-buttons>
+
+    <!-- Logo totalmente à direita -->
+    <ion-buttons slot="end">
+      <img src="../../assets/image/logo.fw.png" style="height: 40px; margin-right: 10px;">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list [inset]="true" style="width: 100%; margin-left: 0px;">
+    <ion-item [button]="true">
+      <ion-icon color="success" slot="start" name="speedometer-outline" size="large"></ion-icon>
+      <ion-label style="font-weight: bold; font-family: 'Muli';">98.340</ion-label>
+      <ion-note  style="font-weight: bold; font-family: 'Muli';" slot="end">05Mar</ion-note>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-icon color="medium" slot="start" name="speedometer-outline" size="large"></ion-icon>
+      <ion-label style="font-weight: bold; font-family: 'Muli';">98.210</ion-label>
+      <ion-note  style="font-weight: bold; font-family: 'Muli';" slot="end">28Fev</ion-note>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-icon color="medium" slot="start" name="speedometer-outline" size="large"></ion-icon>
+      <ion-label style="font-weight: bold; font-family: 'Muli';">97.865</ion-label>
+      <ion-note  style="font-weight: bold; font-family: 'Muli';" slot="end">12Fev</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

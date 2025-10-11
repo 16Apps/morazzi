@@ -1,0 +1,265 @@
+ion-content {
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+
+    --border-radius: 20px 20px 0px 0px;
+
+    >h1 {
+        color: #3d3d3d;
+        font-size: 11pt;
+        font-weight: 700;
+    }
+}
+
+.align-center-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -30px;
+}
+
+.greeting p,
+.greeting h2,
+.recent-km p,
+.update-km {
+    font-family: 'MuliBold', sans-serif;
+}
+
+.revisao-km {
+    font-family: 'MuliBold', sans-serif;
+}
+
+.greeting p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.greeting h2 {
+    font-family: 'MuliBold' !important;
+    margin: 0;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 190px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.slide-card {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Indicadores (bolinhas) */
+.carousel-indicators {
+    position: absolute;
+
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.carousel-indicators span {
+    width: 16px;
+    height: 4px;
+    background: #c4c4c4;
+    border-radius: 3px;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.carousel-indicators span.active {
+    background: #3965b4;
+}
+
+.descricao-anuncio {
+    font-family: 'Muli' !important;
+    margin: 0;
+    font-weight: bolder;
+    font-size: 15px;
+    line-height: 20px;
+    color: #495057
+}
+
+.local {
+    font-size: 10px;
+    color: #ffffff;
+    font-family: 'MuliBold', sans-serif;
+    margin-top: 0px;
+}
+
+.preco {
+    color: #ffffff;
+    font-weight: 900;
+    margin: 0;
+    font-family: 'MuliBold', sans-serif;
+    letter-spacing: -1;
+    font-size: 25px;
+    margin-top: -18px;
+    letter-spacing: -2px;
+    /* linha cinza claro */
+}
+
+.revision-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'MuliBold', sans-serif;
+    margin-bottom: 8px;
+}
+
+.status-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+
+.status-km {
+    color: #28a745;
+    /* verde */
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    font-family: 'MuliBold', sans-serif;
+}
+
+.status-km ion-icon {
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.status-orcamento {
+    color: #28a745;
+    /* verde */
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    font-family: 'MuliBold', sans-serif;
+}
+
+.status-orcamento ion-icon {
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+
+.status-ok {
+    color: #28a745;
+    /* verde */
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Muli', sans-serif;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.status-ok ion-icon {
+    font-size: 13px;
+    margin-left: 4px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    font-family: 'MuliBold', sans-serif;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
+.badge {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.stars {
+    color: #fbc02d;
+    font-size: 14px;
+}
+
+ion-modal {
+    --height: auto;
+}
+
+
+.modal-content {
+    padding-top: 20px;
+    padding-bottom: 0px;
+    font-family: MuliBold;
+    text-align: center;
+    background: #56A35A;
+    color: #ffffff;
+     font-family: 'MuliBold', sans-serif;
+}
+
+.pacote-item {
+    --background: #ffffff; // semelhante ao fundo da imagem
+    border-radius: 12px !important;
+    margin: 8px 0;
+    padding: 8px;
+      
+
+    .quantidade-container {
+        display: flex;
+        align-items: center;
+    }
+
+    ion-button {
+        --color: #ffffff; // azul claro
+        --padding-start: 4px;
+        --padding-end: 4px;
+        min-width: 36px;
+        height: 32px;
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+
+    .quantidade-input {
+        text-align: center;
+        max-width: 60px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        margin: 0 4px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+
+}

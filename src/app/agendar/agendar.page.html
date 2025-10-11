@@ -1,0 +1,358 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="dark" style="--background: #000; ">
+    <ion-buttons slot="start">
+      <ion-button (click)="fecharModal()" style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="chevron-back-outline" style="font-size: 18px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title style="text-align: right;">
+      <img src="../../assets/image/logo.fw.png" alt="CheckKm" style="height: 40px; margin-top: 5px;">
+    </ion-title>
+  </ion-toolbar>
+
+  <div style="background-color: #212529; width: 100%;">
+    <div style="height: 30px; background-color: #ffffff; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;"></div>
+  </div>
+</ion-header>
+
+<ion-content style="--background: #ffffff;">
+
+  <h2 style=" font-size: 15px; font-weight: bold; margin: 16px; font-family: MuliBold; text-align: center;">
+    Atencipar Revisão
+  </h2>
+
+  <div style="text-align: center;">
+    <img src="../../assets/image/icon_car_agenda.fw.png" style="width: 50px; " />
+  </div>
+
+  <ion-accordion-group mode="md" style="padding: 10px; padding-right: 20px;">
+    <ion-accordion *ngFor="let servico of _regVeiculosMotorista.servico.itens"
+      style="margin: 10px; border-radius: 10px; background: #f9f9f9; ">
+      <ion-item slot="header" style="--background: #f9f9f9">
+        <ion-icon slot="start" name="ellipse" color="medium" style="font-size: 8px; "></ion-icon>
+        <ion-label style="font-weight: bold; font-family: 'MuliBold'; font-size: 12px;">
+          {{ servico.descricao }}
+        </ion-label>
+      </ion-item>
+      <ion-list slot="content" style="background: #ffffff; border-radius: 8px; padding: 10px; margin: 10px;">
+        <ion-item lines="none" *ngFor="let fabricante of servico.fabricantes_recomendados">
+          <ion-label style="font-size: 10px; color: #70798c; font-family: 'MuliBold';">
+            {{ fabricante.fabricante }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <!-- <div class="car-container" style="margin-top: 10px;">
+    <ion-card class="car-card"
+      style="border-top: 5px solid #4c5c68 ; background-color: #46494c; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; height: 120px;">
+      <p
+        style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 10px; color: #ffffff">
+        {{ _regVeiculosMotorista.id_veiculo.marca }} {{ _regVeiculosMotorista.id_veiculo.modelo }} {{
+        _regVeiculosMotorista.id_veiculo.ano }}
+      </p>
+
+      <ion-row style="margin-top: 5px;">
+        <ion-col size="6">
+          <ion-button mode="ios" color="warning" fill="outline"
+            style="font-size: 11px; font-family: 'MuliBold'; width: 100%;; ">
+            <ion-icon slot="start" name="speedometer-outline"
+              style="margin-right: 10px; color: #f7b801 !important"></ion-icon>
+            <span *ngIf="_regVeiculosMotorista.id_veiculo.quilometragem.length > 0 " style="color: #f7b801 !important">
+              {{ _regVeiculosMotorista.id_veiculo.quilometragem[_regVeiculosMotorista.id_veiculo.quilometragem.length
+              -1].km | number: '1.0-0' }}km
+            </span>
+            <span *ngIf="_regVeiculosMotorista.id_veiculo.quilometragem.length == 0 " style="color: #f7b801 !important">
+              Informar KM
+            </span>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" *ngIf="_regVeiculosMotorista.servico != undefined">
+          <ion-button mode="ios" color="danger" fill="outline"
+            style="font-size: 11px; font-family: 'MuliBold'; width: 98%;">
+            <ion-icon slot="start" name="build-outline"
+              style="margin-right: 10px; color: #ef233c !important"></ion-icon>
+            <span style="color: #ef233c !important">
+              {{ _regVeiculosMotorista.servico.quilometragem | number: '1.0-0' }}km
+            </span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </div> -->
+<!-- 
+  <div class="car-container" style="margin-top: -40px; height: auto !important; ">
+    <ion-card class="car-card"
+      style="border-top: 5px solid #ccc5b9 ; height: auto !important; background-color: #eaebed; border-top-right-radius: 0px; border-top-left-radius: 0px; height: 90px;">
+
+
+      <div *ngIf="!_regVeiculosMotorista.servico.data_agendamento_inicial" style="padding: 10px; ">
+
+        <p style="text-align: center; margin-top: 5px; font-family: 'MuliBold';font-size: 8px; color: #70798c">
+          SERVIÇOS E PEÇAS
+          <span style="color: #bf4342 !important">SUGESTÃO IA</span>
+        </p>
+
+        <ion-button id="open-modal" expand="block" mode="ios" color="medium"
+          style="font-size: 12px; font-family: 'MuliBold'; letter-spacing: 1px; font-weight:800; width: 98%;">
+          <span style="color: #ffffff !important">
+            ANTECIPAR REVISÃO
+          </span>
+        </ion-button>
+      </div>
+
+      <div *ngIf="_regVeiculosMotorista.servico.data_agendamento_inicial" style="padding: 10px;">
+        <p style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; font-size: 8px; color: #70798c">
+          AGENDAMENTO PARA
+          <span style="color: #bf4342 !important; text-transform: uppercase; font-weight: bolder;">
+            {{ formataData(_regVeiculosMotorista.servico.data_agendamento_inicial) }}
+          </span>
+          À
+          <span style="color: #bf4342 !important; text-transform: uppercase; font-weight: bolder">
+            {{ formataData(_regVeiculosMotorista.servico.data_agendamento_final) }}
+          </span>
+        </p>
+
+        <p
+          style="text-align: center; width: 93%; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 14px;  color: #1982c4">
+          Estamos procurando um parceiro
+          <ion-progress-bar type="indeterminate" color="secondary"
+            style="height: 7px; margin: 10px; border-radius: 3px; "></ion-progress-bar>
+        </p>
+
+      </div>
+
+
+      <p *ngFor="let item of _regVeiculosMotorista.servico.itens; let i = index"
+        style="text-align: center; width: 93%; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 14px;  color: #4c5c68">
+
+      </p>
+
+    </ion-card>
+  </div> -->
+
+  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <div class="block" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+
+        <div *ngIf="_modoReg=='datas'">
+          <img src="../../assets/image/calendario.png" style="width: 15%; margin-top: 20px; margin-bottom: 20px;">
+          <ion-row style="padding: 10px;">
+            <ion-col size="6">
+              <ion-input [(ngModel)]="_data_agendamento_inicial"
+                style="text-align: center;  font-family: Anton; border: 0px !important; font-size: 18px; letter-spacing: 1px; color: #415a77;"
+                type="date" label="de" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+            </ion-col>
+            <ion-col size="6">
+              <ion-input [(ngModel)]="_data_agendamento_final"
+                style="text-align: center;  font-family: Anton; font-size: 18px; letter-spacing: 1px; color: #415a77;"
+                type="date" label="à" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-button (click)="onRegistraServico()" id="open-modal" expand="block" mode="ios" color="medium"
+            fill="outline_"
+            style="font-size: 12px; font-family: 'MuliBold'; letter-spacing: 1px; font-weight:800; width: 98%; margin-top: 20px;">
+            <span style="color: #f8f9fa !important; font-weight: bold;  font-family: 'MuliBold';">
+              REGISTRAR
+            </span>
+          </ion-button>
+          <p
+            style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 8px; color: #70798c">
+            SELECIONE O
+            <span style="color: #bf4342 !important">MELHOR PERÍODO</span>
+            PARA A MANUTENCÃO
+          </p>
+        </div>
+
+        <div *ngIf="_modoReg=='registrando'">
+          <div class="pulse-wrapper">
+            <img src="../../assets/image/check_carrro.gif" class="pulse-img" />
+          </div>
+          <p
+            style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 8px; color: #70798c">
+            <span style="color: #bf4342 !important">REGISTRANDO</span><br>
+            SUA SOLICITAÇÃO A REDE.
+          </p>
+        </div>
+
+        <div *ngIf="_modoReg=='check'">
+          <div class="pulse-wrapper">
+            <img src="../../assets/image/check.gif" class="pulse-img" />
+          </div>
+          <p
+            style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 8px; color: #70798c">
+            <span style="color: #bf4342 !important">REGISTRADO!</span><br>
+            LOGO CHEGAM OS PRIMEIROS ORÇAMENTOS
+          </p>
+        </div>
+
+
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <div *ngIf="returnPage=='agenda'" style="padding: 10px;">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="font-weight: bold; font-family: 'Muli';">JR Auto Mecânica</ion-card-title>
+        <ion-card-subtitle style="font-weight: bold; font-family: 'Muli';">(031) 98827-6757</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content style="font-weight: bold; font-family: 'Muli';">
+        R. Siquem, 1185 - Canaã, Ipatinga - MG, 35164-218
+      </ion-card-content>
+
+      <ion-button fill="clear" color="secondary" style="font-weight: bold; font-family: 'Muli'; font-size: 12px;">
+        <ion-icon slot="start" name="call"></ion-icon>
+        Ligar
+      </ion-button>
+      <ion-button fill="clear" color="success" style="font-weight: bold; font-family: 'Muli'; font-size: 12px">
+        <ion-icon slot="start" name="logo-whatsapp"></ion-icon>
+        WhatsApp
+      </ion-button>
+    </ion-card>
+
+    <p style="text-align: center; margin-top: -15px;">
+      <ion-label style=" padding-left: 10px !important; font-family: 'MuliBold'; " mode="ios">
+        <h3>Selecione uma data</h3>
+        <p style="font-size: 10px;">Aguarde a confirmação da oficina escolhida</p>
+      </ion-label>
+    </p>
+
+    <ion-datetime presentation="date-time" [preferWheel]="true"
+      style="border-radius: 5px; margin: -5px; font-weight: bold; font-family: 'Muli'; font-size: 12px; width: 100%; "
+      mode="md"></ion-datetime>
+
+    <div class="div-right">
+      <ion-button mode="ios" class="botao">Registrar</ion-button>
+    </div>
+
+  </div>
+
+  <ion-modal #modalData trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
+    [backdropDismiss]="false" mode="ios">
+    <ng-template>
+      <div class="modal-content">
+
+        <h2 style=" font-size: 15px; font-weight: bold; margin: 16px; font-family: MuliBold; text-align: center;">
+          Data de Manutenção
+        </h2>
+
+        <ion-row style="padding: 10px;">
+          <ion-col size="6" class="text-center">
+            <ion-input labelPlacement="floating" type="date" [(ngModel)]="primeiraData"
+              style="font-family: MuliBold; border-radius: 4px; border: 1px solid #bbb; ">
+              <div slot="label" style="padding-left: 10px;">De</div>
+            </ion-input>
+          </ion-col>
+          <ion-col size="6" class="text-center">
+            <ion-input labelPlacement="floating" type="date" [(ngModel)]="ultimaData"
+              style="font-family: MuliBold; border-radius: 4px; border: 1px solid #bbb; ">
+              <div slot="label" style="padding-left: 10px;">A</div>
+            </ion-input>
+          </ion-col>
+        </ion-row>
+
+        <div style="width: 100%; padding: 20px; margin-top: -30px;">
+          <ion-datetime presentation="date" [highlightedDates]="highlightedDates" [min]="minDate" [max]="maxDate"
+            (ionChange)="destacarPeriodo($event)" style="font-family: MuliBold;"></ion-datetime>
+        </div>
+
+        <ion-grid>
+          <ion-row class="align-center-space-between">
+            <ion-col size="6">
+              <ion-button (click)="onAbrirDatas()" fill="solid" size="small" expand="block" mode="ios" style=" 
+      --background: #ffffff;
+      --color: #3965b4;
+      --border-radius: 20px;
+      height: 40px;
+      min-height: 40px;
+      padding-bottom: 10px;
+      font-size: 12px;
+      font-family: MuliBold;
+      width: 100% !important;
+      
+    ">
+                Cancelar
+              </ion-button>
+
+            </ion-col>
+            <ion-col size="6">
+              <ion-button (click)="onRegistraServico()" fill="solid" size="small" expand="block" mode="ios" style=" 
+      --background: #3965b4;
+      --color: white;
+      --border-radius: 20px;
+      height: 40px;
+      min-height: 40px;
+      padding-bottom: 10px;
+      font-size: 12px;
+      font-family: MuliBold;
+      width: 100% !important;
+    ">
+                Aplicar
+              </ion-button>
+
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+
+      </div>
+
+
+
+    </ng-template>
+
+
+  </ion-modal>
+
+  <ion-modal #modalRegistro trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
+    [backdropDismiss]="false" mode="ios">
+    <ng-template>
+      <div class="modal-content">
+        <!-- <div class="progress-bar"></div> -->
+        <div class="clock-icon">
+          <img src="../../assets/image/clock.gif" style="height: 50px; border-radius: 50%;">
+        </div>
+        <h3>Os primeiros orçamentos já vão<br> começar a vir em instantes.</h3>
+        <p>Estamos procurando uma oficina parceira<br> para ter o melhor serviço CheckKM</p>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+
+</ion-content>
+
+<ion-footer class="ion-no-border" style="text-align:right ;">
+  <ion-toolbar style="padding-right: 10px; --background: #ffffff;;">
+    <ion-grid>
+      <ion-row class="align-center-space-between">
+        <ion-col size="1"></ion-col>
+        <ion-col size="10">
+          <ion-button (click)="onAbrirDatas()" fill="solid" size="small" expand="block" mode="ios" style=" 
+      --background: #3965b4;
+      --color: white;
+      --border-radius: 20px;
+      height: 40px;
+      min-height: 40px;
+      padding-bottom: 10px;
+      font-size: 12px;
+      font-family: MuliBold;
+      width: 100% !important;
+    ">
+            Antecipar
+          </ion-button>
+
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

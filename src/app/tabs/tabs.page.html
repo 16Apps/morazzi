@@ -1,0 +1,49 @@
+<ion-tabs  >
+
+  <!-- botao central -->
+  <ion-fab  slot="fixed" horizontal="center" vertical="bottom">
+    <ion-fab-button style="--background: #672438;" >
+      <ion-icon name="logo-ionitron" style="font-size: 30px;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-tab-bar  slot="bottom" class="ion-no-border" style="--color: #a5a5a5; --color-selected: #672438;"  >
+
+    <!-- botao 1 -->
+    <ion-tab-button tab="tab1" style="font-size: 15px;" selected >
+      <ion-icon name="home" style="color: #a5a5a5; margin-bottom: 2px; --ion-icon-size: 15px;"></ion-icon>
+      <ion-label style="font-family: 'MuliBold'; font-size: 8px; font-weight: bolder; letter-spacing: 0px;">
+        Início
+      </ion-label>
+    </ion-tab-button>
+    
+    <!-- botao 2 -->
+    <ion-tab-button tab="tab2" style="color: #a5a5a5; font-size: 15px;" >
+      <ion-icon name="logo-deviantart" style="margin-bottom: 2px; --ion-icon-size: 15px;"></ion-icon>
+      <ion-label style="font-family: 'MuliBold'; font-size: 8px;  font-weight: bolder; letter-spacing: 0px;">
+        Parceiros
+      </ion-label>
+    </ion-tab-button>
+
+    <svg  height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="red" fill-rule="evenodd"></path>
+    </svg>
+
+    <!-- botao 3 -->
+    <ion-tab-button  tab="tab3" style="color: #a5a5a5; font-size: 15px;" >
+      <ion-icon name="wallet" style="margin-bottom: 2px; --ion-icon-size: 15px;"></ion-icon>
+      <ion-label style="font-family: 'MuliBold'; font-size: 8px;  font-weight: bolder; letter-spacing: 0px;">
+        CashBack
+      </ion-label>
+    </ion-tab-button>
+
+    <!-- botao 4 -->
+    <ion-tab-button tab="tab4" style="color: #a5a5a5; font-size: 15px;" >
+      <ion-icon name="person" style="margin-bottom: 2px; --ion-icon-size: 15px;"></ion-icon>
+      <ion-label style="font-family: 'MuliBold'; font-size: 8px;  font-weight: bolder; letter-spacing: 0px;">
+        Perfil
+      </ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

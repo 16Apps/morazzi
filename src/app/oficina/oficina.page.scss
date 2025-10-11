@@ -1,0 +1,53 @@
+.custom-tab-bar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 70px;
+    // background: white;
+    border-radius: 35px;
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 9; /* Mantém a tab bar abaixo do botão */
+  }
+  
+  .custom-tab-bar::before {
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    width: 80px;
+    height: 40px;
+    // background: white;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    z-index: -1;
+    // box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-tab-bar ion-tab-button {
+    flex: 1;
+    color: #999;
+    transition: all 0.3s ease;
+
+    
+  }
+  
+  .custom-tab-bar ion-tab-button ion-icon {
+    font-size: 24px;
+  }
+  
+  .custom-tab-bar ion-tab-button.tab-selected {
+    color: #cb1f1f;
+  }
+
+  .custom-tab-bar ion-tab-button.tab-focus   {
+    color: #cb1f1f;
+  }
+  
+
+  
+  

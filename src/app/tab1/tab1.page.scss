@@ -1,0 +1,757 @@
+ion-toolbar .car-toolbar {
+  display: flex;
+  align-items: center;
+
+  ion-thumbnail img {
+    width: 48px;
+    border-radius: 8px;
+  }
+
+  ion-label h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  ion-label p {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+}
+
+ion-content {
+  --padding-top: 0px;
+  --padding-bottom: 20px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+
+  --border-radius: 20px 20px 0px 0px;
+
+  >h1 {
+    color: #3d3d3d;
+    font-size: 11pt;
+    font-weight: 700;
+  }
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #672438;
+  /* bordô do mockup */
+  padding: 15px 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: #fff;
+  font-family: 'MuliBold'
+}
+
+.user-info h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-company {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.user-points {
+  margin: 5px 0 0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.user-avatar img {
+  width: 63px;
+  height: 63px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.section-card {
+  margin: 12px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  color: #F6F2E7;
+  font-weight: bold;
+  font-size: 18px;
+  height: 75px;
+  font-family: 'Muli';
+  padding-bottom: 50px;
+}
+
+.section-header.projeto {
+  background: #6D2E42;
+  /* Bordô */
+}
+
+.section-header.acabamento {
+  background: #4F6974;
+  /* Verde azulado */
+}
+
+.section-header.decoracao {
+  background: #464B71;
+  /* Azul escuro */
+}
+
+.section-body {
+  background: #f9f9f9;
+  padding: 12px;
+  padding-bottom: 20px;
+}
+
+.partner-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.partner-logos img {
+  width: 30%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  padding: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+
+
+
+
+
+.welcome-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+
+    height: 100%;
+
+    font-size: 13pt;
+
+    span {
+      font-weight: 700;
+    }
+  }
+
+  .km-info {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      font-size: 10pt;
+      line-height: 150%;
+
+      span {
+        color: #004b92;
+        font-weight: 700;
+      }
+    }
+
+    ion-button {
+      width: fit-content;
+
+      --padding-top: 10px;
+      --padding-bottom: 10px;
+      --padding-end: 20px;
+      --padding-start: 20px;
+
+      font-size: 9pt;
+      font-weight: 700;
+      --border-radius: 100px;
+    }
+  }
+}
+
+.banner-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    position: absolute;
+    z-index: -1;
+
+    width: 100%;
+    // height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  ion-card-content {
+    // background-color: red;
+  }
+
+  h4 {
+    margin-bottom: 10px;
+
+    font-size: 10pt;
+    font-weight: 700;
+  }
+
+  p {
+    width: 70%;
+
+    font-size: 10pt;
+  }
+}
+
+.revision-status {
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 10pt;
+    font-weight: 600;
+
+    span {
+      color: #12a737;
+    }
+  }
+
+  .content-range {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+
+    p {
+      font-size: 10pt;
+
+      span {
+        color: #004b92;
+        font-weight: 600;
+      }
+    }
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 15px;
+
+    color: #4e4e4e;
+    font-size: 10pt;
+    font-weight: 600;
+
+    span {
+      color: black;
+    }
+  }
+}
+
+ion-tab-bar {
+  ion-tab-button {
+    --color-selected: #ff3c3c;
+  }
+}
+
+
+
+
+.align-center-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -30px;
+}
+
+.greeting p,
+.greeting h2,
+.recent-km p,
+.update-km {
+  font-family: 'MuliBold', sans-serif;
+}
+
+.revisao-km {
+  font-family: 'MuliBold', sans-serif;
+}
+
+.greeting p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.greeting h2 {
+  font-family: 'MuliBold' !important;
+  margin: 0;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.recent-km p {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  color: #333;
+  opacity: 0.8;
+}
+
+.recent-km p span {
+  color: #3965b4;
+  font-weight: bold;
+}
+
+.update-km {
+  font-family: 'MuliBold', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #212529;
+  padding: 10px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #ffffff;
+  width: 120px;
+  font-weight: 800;
+}
+
+.revisao-km {
+  font-family: 'MuliBold', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 10px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #212529;
+  width: 100%;
+  font-weight: 800;
+  margin-top: 20px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 190px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slide-card {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* opcional: dá aquele efeito de "encaixe" */
+  -webkit-overflow-scrolling: touch;
+  /* rolagem suave no iOS */
+  gap: 10px;
+  /* espaço entre os cards */
+  padding: 10px;
+}
+
+.atividade-card {
+  flex: 0 0 auto;
+  /* impede que o card quebre linha */
+  width: 90px;
+  /* defina a largura que quiser */
+  height: 90px;
+  background: #fff;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  scroll-snap-align: start;
+  /* opcional: alinha no começo */
+}
+
+.atividade-card p {
+  height: 20px;
+  /* altura fixa */
+  display: flex;
+  /* ativa flexbox */
+  align-items: center;
+  /* centraliza verticalmente */
+  justify-content: center;
+  /* centraliza horizontalmente */
+  margin: 0;
+  /* tira espaçamento padrão do <p> */
+  font-size: 12px;
+  /* ajuste conforme necessário */
+  font-family: 'MuliBold', sans-serif;
+  color: #495057
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  /* controla até onde o degrade sobe */
+  /*background: linear-gradient(to top, rgba(86, 163, 90, 1.1), transparent); */
+  background: linear-gradient(to top, rgba(0, 0, 0, 1.1), transparent);
+  z-index: 777777;
+}
+
+.slide-text {
+  color: #ffffff;
+  padding: 16px;
+  font-family: 'Muli', sans-serif;
+  z-index: 88888888;
+}
+
+.slide-text h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.slide-text p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+}
+
+/* Indicadores (bolinhas) */
+.carousel-indicators {
+  position: absolute;
+
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.carousel-indicators span {
+  width: 16px;
+  height: 4px;
+  background: #c4c4c4;
+  border-radius: 3px;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.carousel-indicators span.active {
+  background: #3965b4;
+}
+
+.tour-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.tour-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  font-family: 'MuliBold', sans-serif;
+}
+
+.local {
+  font-size: 10px;
+  color: #777;
+  margin-bottom: 4px;
+  font-family: 'MuliBold', sans-serif;
+}
+
+.titulo {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 6px 0;
+  font-family: 'MuliBold', sans-serif;
+  color: #1b263b;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  margin-bottom: 6px;
+  font-family: 'MuliBold', sans-serif;
+}
+
+.badge {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.stars {
+  color: #fbc02d;
+  font-size: 14px;
+}
+
+.preco {
+  color: #1b263b;
+  font-weight: bold;
+  margin: 0;
+  font-family: 'MuliBold', sans-serif;
+  letter-spacing: -1;
+  font-size: 15px;
+  margin-top: -3px;
+  /* linha cinza claro */
+}
+
+
+
+
+
+
+
+
+
+.revision-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'MuliBold', sans-serif;
+  margin-bottom: 8px;
+}
+
+.status-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.status-km {
+  color: #28a745;
+  /* verde */
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  font-family: 'MuliBold', sans-serif;
+}
+
+.status-km ion-icon {
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.status-orcamento {
+  color: #2a6f97;
+  /* verde */
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  font-family: 'MuliBold', sans-serif;
+}
+
+.status-orcamento ion-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+
+.status-ok {
+  color: #28a745;
+  /* verde */
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Muli', sans-serif;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.status-ok ion-icon {
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+
+ion-range {
+  --bar-background: #e7ecef;
+  --bar-background-active: linear-gradient(to right, #0066cc, #e7ecef);
+  --bar-height: 8px;
+  --bar-border-radius: 8px;
+  --knob-background: #274c77;
+  --knob-size: 30px;
+  --pin-background: #ffafcc;
+  --pin-color: #fff;
+  margin-top: 0px;
+}
+
+.km-text {
+  font-size: 13px;
+  margin: 0;
+  font-family: 'MuliBold', sans-serif;
+  margin-top: -10px;
+}
+
+.km-text span {
+  color: #3965b4;
+  font-weight: bold;
+}
+
+.next-revision {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 13px;
+  color: #777;
+  margin-top: 8px;
+  font-family: 'Muli', sans-serif;
+}
+
+.next-revision span {
+  color: #001f3f;
+  font-weight: bold;
+}
+
+.status-card {
+  height: 100px;
+  border-radius: 10px;
+  position: relative;
+  padding: 8px;
+  font-family: 'MuliBold', sans-serif;
+}
+
+.status-card ion-icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 22px;
+}
+
+.status-card p {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.white-card {
+  background: white;
+  color: #002b5c;
+}
+
+.red-card {
+  background: #d32f2f;
+  color: white;
+}
+
+
+.green-card {
+  background: #56A35A;
+  color: white;
+}
+
+.step-progress-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  margin-top: 10px;
+}
+
+.step {
+  height: 1px;
+  background-color: #ddd;
+  border-radius: 3px;
+  flex: 1;
+  margin: 0 4px;
+  transform: scaleY(0.5);
+  transform-origin: center;
+}
+
+.step.completed {
+  background-color: #2a6f97;
+}
+
+.step-label {
+  text-align: left;
+  font-size: 12px;
+  color: #555;
+  font-family: 'Muli', sans-serif;
+}
+
+ion-modal {
+  --height: auto;
+}
+
+
+.modal-content {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-family: MuliBold;
+  text-align: center;
+  background: #f6f6f6;
+}
+
+.progress-bar {
+  width: 50px;
+  height: 4px;
+  background: #3b82f6;
+  /* azul */
+  border-radius: 2px;
+  margin: 0 auto 16px auto;
+}
+
+.clock-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.modal-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: MuliBold;
+}
+
+.modal-content p {
+  font-size: 11px;
+  color: #555;
+  font-family: MuliBold;
+}

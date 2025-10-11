@@ -1,0 +1,251 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <!-- Ícone e Nome do lado esquerdo -->
+    <ion-buttons (click)="abrirModalPerfil()" slot="start">
+      <ion-icon name="construct-outline"
+        style="font-size: 20px; margin-right: 8px; margin-left: 5px; opacity: 0.6; "></ion-icon>
+      <span style="font-size: 15px; font-weight: bold; font-family: 'Muli'; letter-spacing: 1px;">
+        {{ _regOficina.nome }}
+      </span>
+    </ion-buttons>
+
+    <!-- Logo totalmente à direita -->
+    <ion-buttons (click)="onSair()" slot="end">
+      <img src="../../assets/image/logo.fw.png" style="height: 40px; margin-right: 10px;">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content">
+
+  <div class="text-center">
+    <img src="../../assets/image/banner_servico.png" alt="Cadastrar veículo"
+      style="height: auto; width: 100%; object-fit: cover; margin-top: -10px;" />
+  </div>
+
+
+  <div *ngIf="_regVeiculosMotorista.length">
+    <div *ngFor="let item of _regVeiculosMotorista; let i = index">
+      <div class="car-container" style="margin-top: 10px;">
+        <ion-card class="car-card"
+          style="border-top: 5px solid #4c5c68 ; background-color: #46494c; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; height: 120px;">
+
+          <p
+            style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 10px; color: #ffffff">
+            {{ item.id_veiculo.marca }} {{ item.id_veiculo.modelo }} {{ item.id_veiculo.ano }}
+          </p>
+
+          <ion-row style="margin-top: 5px;">
+            <ion-col size="6">
+              <ion-button mode="ios" color="warning" fill="outline"
+                style="font-size: 11px; font-family: 'MuliBold'; width: 100%;; ">
+                <ion-icon slot="start" name="calendar-outline"
+                  style="margin-right: 10px; color: #f7b801 !important"></ion-icon>
+                <span *ngIf="item.id_veiculo.quilometragem.length > 0 " style="color: #f7b801 !important">
+                  {{ formataData(item.servico.data_agendamento_inicial) }} à
+                  {{ formataData(item.servico.data_agendamento_final) }}
+                </span>
+                <span *ngIf="item.id_veiculo.quilometragem.length == 0 " style="color: #f7b801 !important">
+                  Informar KM
+                </span>
+              </ion-button>
+            </ion-col>
+            <ion-col size="6" *ngIf="item.servico != undefined">
+              <ion-button mode="ios" color="danger" fill="outline"
+                style="font-size: 11px; font-family: 'MuliBold'; width: 98%;">
+                <ion-icon slot="start" name="build-outline"
+                  style="margin-right: 10px; color: #ef233c !important"></ion-icon>
+                <span style="color: #ef233c !important">
+                  {{ item.servico.quilometragem | number: '1.0-0' }}km
+                </span>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+      </div>
+
+      <div class="car-container" style="margin-top: -35px; ">
+        <ion-card class="car-card">
+          <img src="{{ item.id_veiculo.foto }}"
+            style="height: 120px; width: 700px; object-fit: cover;  object-position: center;  " />
+          <div class="badge">{{ item.id_veiculo.placa }}</div>
+        </ion-card>
+      </div>
+
+      <div class="car-container" style="margin-top: -40px; ">
+        <ion-card class="car-card"
+          style="border-top: 5px solid #ccc5b9 ; background-color: #eaebed; border-top-right-radius: 0px; border-top-left-radius: 0px; height: 90px;">
+
+
+          <div *ngIf="item.orcamento == undefined">
+            <p
+              style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 10px; color: #70798c">
+              VERIFIQUE OS
+              <span style="color: #bf4342 !important; text-transform: uppercase; font-weight: bolder;">
+                SERVIÇOS
+              </span>
+              E
+              <span style="color: #bf4342 !important; text-transform: uppercase; font-weight: bolder">
+                PEÇAS
+              </span>
+              SUGERIDAS PELA IA
+            </p>
+
+            <div style="padding: 10px; margin-top: -10px;">
+              <ion-button (click)="onOrcamento(item)" mode="ios" color="medium" fill="outline"
+                style="font-size: 12px; font-family: 'MuliBold'; letter-spacing: 1px; font-weight:800; width: 98%;">
+                <span style="color: #3d3b3c !important">
+                  AVALIAR SERVIÇO 🛠
+                </span>
+              </ion-button>
+            </div>
+          </div>
+
+          <div *ngIf="item.orcamento != undefined">
+            <p
+              style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 10px; color: #70798c; text-transform: uppercase;">
+              ORÇAMENTO
+              <span style="color: #bf4342 !important; text-transform: uppercase; font-weight: bolder;">
+                {{ item.orcamento.motorista_retorno }}
+              </span>
+              {{ formataData(item.orcamento.data_proposta) }}
+            </p>
+
+            <div style="padding: 10px; margin-top: -10px;">
+              <ion-button (click)="onOrcamento(item)" mode="ios" color="medium" fill="outline"
+                style="font-size: 12px; font-family: 'MuliBold'; letter-spacing: 1px; font-weight:800; width: 98%;">
+                <span style="color: #3d3b3c !important">
+                  ORÇAMENTO  R$ {{ onFormataReal(item.orcamento.total) }} 🪙
+                </span>
+              </ion-button>
+            </div>
+          </div>
+
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+
+  <ion-modal #modalPerfil trigger="open-modal">
+    <ng-template>
+      <ion-header [translucent]="true">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="modalPerfil.dismiss()" style="opacity: 0.6;">
+              <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title class="ion-text-center">
+            <p
+              style="font-size: 15px; font-weight: bold; font-family: 'Muli'; letter-spacing: 1px; margin-left: -20px; opacity: 0.9;">
+              Dados da Oficina
+            </p>
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="tela-perfil" fullscreen>
+
+        <div class="perfil-topo">
+          <div class="foto-perfil" (click)="onLogo()">
+            <img src="{{ _regOficina.logo ? _regOficina.logo : 'assets/image/logo_oficina.gif'}}">
+            <ion-icon name="camera" class="camera-icon"></ion-icon>
+          </div>
+          <h2>{{ _regOficina.nome }}</h2>
+        </div>
+
+        <div class="formulario">
+          <ion-item>
+            <ion-label position="stacked">Nome Oficina</ion-label>
+            <ion-input [(ngModel)]="_regOficina.nome" placeholder="Digite o nome da oficina"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Apelido</ion-label>
+            <ion-input [(ngModel)]="_regOficina.sobrenome" placeholder="Nome fantasia..." type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Celular</ion-label>
+            <ion-input [(ngModel)]="_regOficina.celular" placeholder="(00) 00000-0000" [maskito]="phoneMask"
+              [maskitoElement]="maskPredicate" type="tel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Telefone</ion-label>
+            <ion-input [(ngModel)]="_regOficina.telefone" placeholder="(00) 00000-0000" [maskito]="phoneMask"
+              [maskitoElement]="maskPredicate" type="tel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input [(ngModel)]="_regOficina.email" placeholder="Digite seu email" type="email"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">CNPJ</ion-label>
+            <ion-input [(ngModel)]="_regOficina.cnpj_cpf" [maskito]="cnpjMask" [maskitoElement]="maskPredicate"
+              placeholder="00.000.000/0000-00"></ion-input>
+          </ion-item>
+
+          <div class="text-center">
+            <img src="../../assets/image/oficina_endereco.png" alt="Cadastrar veículo"
+              style="height: auto; width: 100%; object-fit: cover; border-radius: 10px;  " />
+          </div>
+
+          <ion-item class="mt-4">
+            <ion-label position="stacked">CEP</ion-label>
+            <ion-input [(ngModel)]="_regOficina.cep" [maskito]="cepMask" [maskitoElement]="maskPredicate"
+              placeholder="00.000-000">
+            </ion-input>
+
+            <ion-button fill="clear" slot="end" (click)="onBuscaCep()">
+              <ion-icon slot="icon-only" name="search" color="warning"></ion-icon>
+            </ion-button>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Rua, Avenida ...</ion-label>
+            <ion-input [(ngModel)]="_regOficina.logradouro" type="tel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Número</ion-label>
+            <ion-input [(ngModel)]="_regOficina.numero" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Complemento</ion-label>
+            <ion-input [(ngModel)]="_regOficina.complemento" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Bairro</ion-label>
+            <ion-input [(ngModel)]="_regOficina.bairro" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Cidade</ion-label>
+            <ion-input [(ngModel)]="_regOficina.cidade" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Estado</ion-label>
+            <ion-input [(ngModel)]="_regOficina.estado" type="text"></ion-input>
+          </ion-item>
+
+        </div>
+
+        <ion-fab slot="fixed" vertical="bottom" horizontal="end" style="margin: 10px;">
+          <ion-fab-button (click)="onAtualizaOficina()" color="warning">
+            <ion-icon name="save"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

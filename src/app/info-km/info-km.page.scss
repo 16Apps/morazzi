@@ -1,0 +1,67 @@
+.custom-km-input {
+  --padding-start: 0;
+  --padding-end: 0;
+  --border-width: 0;
+  --highlight-color-focused: transparent;
+  --background: transparent;
+
+  font-size: 24px;
+  color: #002b5c;
+  font-weight: bold;
+  text-align: center;
+
+  border-bottom: 2px solid #457b9d;
+  width: fit-content;
+  margin: 0 auto;
+  font-family: MuliBold;
+  font-weight: bold;
+}
+
+.km-card {
+  --background: #e9ecef;
+  border-radius: 5px;
+  font-family: 'Muli', sans-serif;
+  box-shadow: none !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.km-card ion-item {
+  --background: transparent;
+}
+
+.icon-circle {
+  background: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle ion-icon {
+  font-size: 20px;
+  color: #000;
+}
+
+ion-label h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  font-family: 'Muli', sans-serif;
+}
+
+ion-label p {
+  margin: 0;
+  font-size: 12px;
+  color: #aaa;
+  font-family: 'Muli', sans-serif;
+}
+
+.km-value {
+  font-size: 14px;
+  color: #002b5c;
+  font-weight: bold;
+  font-family: 'Muli', sans-serif;
+}

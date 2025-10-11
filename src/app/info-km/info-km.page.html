@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="dark" style="--background: #000; ">
+    <ion-buttons slot="start">
+      <ion-button (click)="fecharModal()" style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="chevron-back-outline" style="font-size: 18px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title style="text-align: right;">
+      <img src="../../assets/image/logo.fw.png" alt="CheckKm" style="height: 40px; margin-top: 5px;">
+    </ion-title>
+  </ion-toolbar>
+
+  <div style="background-color: #212529; width: 100%;">
+    <div style="height: 30px; background-color: #ffffff; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;"></div>
+  </div>
+
+</ion-header>
+
+<ion-content style="--background: #ffffff;">
+
+  <h2 style=" font-size: 15px; font-weight: bold; margin: 16px; font-family: MuliBold; text-align: center;">
+    Atualizar KM
+  </h2>
+
+  <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="4"></ion-col>
+      <ion-col size="4">
+        <ion-input type="tel" placeholder="000.000" [(ngModel)]="_numero" (ionInput)="formatarNumero($event)"
+          class="custom-km-input"></ion-input>
+      </ion-col>
+      <ion-col size="4"></ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button (click)="onAddKm()" fill="solid" size="small" expand="block" mode="ios" style=" 
+      --background: #3965b4;
+      --color: white;
+      --border-radius: 20px;
+      height: 40px;
+      min-height: 40px;
+      padding: 10px;
+      font-size: 12px;
+      font-family: MuliBold;
+      width: 100% !important;
+    ">
+          Confirmar
+        </ion-button>
+
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div style="padding: 10px;">
+    <ion-card class="km-card" *ngFor="let item of _regVeiculosMotorista.id_veiculo.quilometragem; let i = index">
+      <ion-item lines="none">
+        <ion-avatar slot="start" class="icon-circle">
+          <ion-icon name="speedometer-outline"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Km atual</h2>
+          <p>{{ formataDataSemana(item.data_registro) }}</p>
+        </ion-label>
+        <div class="km-value">{{ item.km | number: '1.0-0' }}</div>
+      </ion-item>
+    </ion-card>
+  </div>
+
+
+</ion-content>

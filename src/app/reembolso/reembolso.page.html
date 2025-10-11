@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="fecharModal()" style="opacity: 0.6;">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <p
+        style="font-size: 15px; font-weight: bold; font-family: 'Muli'; letter-spacing: 1px; margin-left: -20px; opacity: 0.9;">
+        Reembolso</p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-row style="margin-left: 0px; width: 90%; margin-left: -10px; margin-top: -10px;">
+    <ion-col>
+      <ion-item mode="ios" class="item" style="width: 100%;">
+        <ion-label position="stacked" class="label">Km Inicial</ion-label>
+        <ion-input class="input" type="text" value="98.340" ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col >
+      <ion-item mode="ios" class="item" style="width: 100%;">
+        <ion-label position="stacked" class="label">Km Final</ion-label>
+        <ion-input class="input" type="text" ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-item mode="ios" class="item" style=" margin-top: -20px;">
+    <ion-label position="stacked" class="label">Data</ion-label>
+    <ion-input class="input" type="date" ></ion-input>
+  </ion-item>
+
+  <ion-item mode="ios" class="item" style=" margin-top: -15px;">
+    <ion-label position="stacked" class="label">Justificativa</ion-label>
+    <ion-input class="input" type="text" ></ion-input>
+  </ion-item>
+
+
+
+  <div class="div-right">
+    <ion-button mode="ios" class="botao">Registrar</ion-button>
+  </div>
+
+  <ion-list [inset]="true" style="width: 100%; margin-left: 0px;">
+    <ion-item [button]="true">
+      <ion-icon color="success" slot="start" name="timer" size="large"></ion-icon>
+      <ion-label style="font-weight: bold; font-family: 'Muli';">
+        98.340
+        <span style="font-size: 13px; opacity: 0.6;">98.290</span><br>
+        <ion-note color="medium" class="ion-text-wrap"
+          style="font-family: Muli; font-size: 10px; line-height: 0.8 !important">
+          Deslocamento para reunião comercial e apresentação de propostas.
+        </ion-note>
+      </ion-label>
+      <ion-note style="font-weight: bold; font-family: 'Muli';" slot="end">
+        05Mar 12h45
+      </ion-note>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-icon color="medium" slot="start" name="timer" size="large"></ion-icon>
+      <ion-label style="font-weight: bold; font-family: 'Muli';">
+        98.290
+        <span style="font-size: 13px; opacity: 0.6;">97.900</span><br>
+        <ion-note color="medium" class="ion-text-wrap"
+          style="font-family: Muli; font-size: 10px; line-height: 0.8 !important">
+          Transporte até oficina para revisão preventiva do veículo.
+        </ion-note>
+      </ion-label>
+      <ion-note style="font-weight: bold; font-family: 'Muli';" slot="end">
+        05Mar 08h13
+      </ion-note>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-icon color="medium" slot="start" name="timer" size="large"></ion-icon>
+      <ion-label style="font-weight: bold; font-family: 'Muli';">
+        97.900
+        <span style="font-size: 13px; opacity: 0.6;">97.541</span><br>
+        <ion-note color="medium" class="ion-text-wrap"
+          style="font-family: Muli; font-size: 10px; line-height: 0.8 !important">
+          Envio de contratos e materiais para parceiros.
+        </ion-note>
+      </ion-label>
+      <ion-note style="font-weight: bold; font-family: 'Muli';" slot="end">
+        02Mar 16h33
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

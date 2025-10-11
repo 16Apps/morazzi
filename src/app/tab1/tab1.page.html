@@ -1,0 +1,125 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #672438; ">
+
+    <ion-title style="text-align: left;" (click)="onSair()">
+      <img src="../../assets/image/logo.fw.png" alt="CheckKm" style="height: 60px; margin-left: 10px;">
+    </ion-title>
+
+    <ion-buttons slot="end" style="margin-top: -10px;">
+      <ion-button style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="menu-outline" style="font-size: 26px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-toolbar style="--background: #672438; ">
+    <div class="user-header">
+      <div class="user-info">
+        <div class="user-name">
+          <h2>{{ _regCliente != undefined ?  _regCliente.nome : 'Carregando...'}}</h2>
+          <p class="user-company">
+            {{ _regCliente != undefined ? _regCliente.endereco.cidade +'/'+ _regCliente.endereco.estado : 'Carregando...' }}</p>
+          <p class="user-points">
+            <ion-icon name="flash-outline"></ion-icon> 100 pts
+          </p>
+        </div>
+      </div>
+      <div class="user-avatar">
+        <img src="{{ _regCliente != undefined ?_regCliente._foto : 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg' }}" alt="Foto do usuário">
+      </div>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: #672438;  margin-top: -15px; height: 33px;  ">
+    <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #F5F5F5;  ">
+
+  <ion-searchbar mode="ios" placeholder="" style="font-family: 'MuliBold'"></ion-searchbar>
+
+  <div style="text-align: center;">
+    <img src="../../assets/image/banner_bemvindo.png" alt="CheckKm" style="width: 100%;">
+  </div>
+
+  <div class="section-card" (click)="toggleSection('projeto')">
+    <div class="section-header projeto">
+      <span style="opacity: 0.7;">
+        <img src="../../assets/image/icon_m.fw.png"
+          style="height: 13px; width: 13px; margin-right: 3px; margin-bottom: -1px;">
+        Projeto
+      </span>
+      <ion-icon name="flash-outline"></ion-icon>
+    </div>
+    <div class="section-body" *ngIf="openSection === 'projeto'">
+      <div class="partner-logos">
+        <img *ngFor="let item of _regParceiros; let i = index" src="{{ item._logo}}" [hidden]="item.atuacao!='projeto'"
+          alt="{{ item.razao_social }}">
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card" (click)="toggleSection('acabamento')" style="margin-top: -30px;">
+    <div class="section-header acabamento">
+      <span style="opacity: 0.7;">
+        <img src="../../assets/image/icon_m.fw.png"
+          style="height: 13px; width: 13px; margin-right: 3px; margin-bottom: -1px;">
+        Acabamento
+      </span>
+      <ion-icon name="flash-outline"></ion-icon>
+    </div>
+    <div class="section-body" *ngIf="openSection === 'acabamento'">
+      <div class="partner-logos">
+        <img *ngFor="let item of _regParceiros; let i = index" src="{{ item._logo}}"
+          [hidden]="item.atuacao!='acabamento'" alt="{{ item.razao_social }}">
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card" (click)="toggleSection('decoracao')" style="margin-top: -30px;">
+    <div class="section-header decoracao">
+      <span style="opacity: 0.7;">
+        <img src="../../assets/image/icon_m.fw.png"
+          style="height: 13px; width: 13px; margin-right: 3px; margin-bottom: -1px;">
+        Decoração
+      </span>
+
+      <ion-icon name="flash-outline"></ion-icon>
+    </div>
+    <div class="section-body" *ngIf="openSection === 'decoracao'">
+      <div class="partner-logos">
+        <img *ngFor="let item of _regParceiros; let i = index" src="{{ item._logo}}"
+          [hidden]="item.atuacao!='decoracao'" alt="{{ item.razao_social }}">
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div style="min-height: 200px; text-align: center;">
+  </div>
+
+
+
+  <ion-modal #modalIA trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
+    [backdropDismiss]="false" mode="ios">
+    <ng-template>
+      <div class="modal-content">
+        <!-- <div class="progress-bar"></div> -->
+        <div class="clock-icon">
+          <img src="../../assets/image/car_ia.gif" style="height: 50px; border-radius: 50%;">
+        </div>
+        <h3>Nossa IA está trabalhando<br> para o seu veículo.</h3>
+        <p>Analisando os serviços para a próxima revisão.<br></p>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

@@ -1,0 +1,325 @@
+ion-content {
+    --background: #f5f5f5;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes borderAnimation {
+    0% { box-shadow: 0 0 0 12px #61a5c2; }
+    25% { box-shadow: 0 0 0 11px #48bfe3; }
+    50% { box-shadow: 0 0 0 12px #64dfdf; }
+    75% { box-shadow: 0 0 0 11px #72efdd; }
+    100% { box-shadow: 0 0 0 12px #80ffdb; }
+}
+
+
+.reader-wrapper {
+    position: fixed;
+    top: -40px; /* Mantendo o ajuste */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px; /* Aumenta para incluir a borda */
+    height: 300px; /* Aumenta para incluir a borda */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: borderAnimation 3s infinite alternate ease-in-out;
+    border-radius: 50%; /* Mantém o formato circular */
+    z-index: 9999;
+    background: #ffffff;
+    
+}
+
+#reader {
+    width: 300px !important;
+    height: 300px !important;
+    background: #ffffff;
+    clip-path: circle(50% at 50% 50%);
+}
+
+.profile-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    // height: 100vh; /* Full height of the screen */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.background-curve {
+    position: fixed;
+    background: linear-gradient(135deg, #0a9396, #005f73);
+    border: 10px solid #0a9396;
+    height: 500px;
+    width: 200%;
+    border-radius: 50%;
+    // position: absolute;
+    margin-top: -300px;
+    // left: 0px;
+    z-index: 1;
+}
+
+.image-container {
+    position: relative;
+    width: 200px;
+    /* Ajuste conforme necessário */
+    margin: auto;
+    /* Centraliza o container */
+}
+
+.profile-picture {
+    width: 170px;
+    height: 170px;
+    background: white;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+    /* Centraliza a imagem dentro do container */
+    border: 4px solid white;
+    position: relative;
+    z-index: 1;
+    margin-top: -80px;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    position: relative;
+    z-index: 2;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.profile-info .name {
+    font-family: Anton;
+    font-size: 20px;
+    font-weight: normal;
+    margin: -10px 0 5px;
+    letter-spacing: 1px;
+    color: #2ec4b6
+}
+
+.fade-effect {
+    animation: fadeInOut 8s infinite;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        /* Nível de transparência inicial e final */
+    }
+
+    50% {
+        opacity: 1;
+        /* Transparência no meio do ciclo */
+    }
+}
+
+ion-label {
+    display: block;
+  
+  }
+  
+  ion-label h2 {
+    font-family: Anton;
+    font-size: 20px;
+    font-weight: normal;
+    color: #778da9;
+    margin-top: 5px;
+    letter-spacing: 1px;
+
+  }
+  
+  ion-label p:nth-of-type(1) {
+    font-family: MuliBold;
+    font-size: 1.0rem;
+    color: #00b4d8;
+    line-height: 1.3;
+    letter-spacing: -1px;
+  }
+  
+  ion-label p:nth-of-type(2) {
+    font-family: MuliBold;
+    font-size: 0.9rem;
+    color: #34a0a4;
+    line-height: 1.3;
+    letter-spacing: 0px;
+  }
+  
+  ion-label p:nth-of-type(3) {
+    font-family: MuliBold;
+    font-size: 0.7rem;
+    color: #76c893;
+    line-height: 1;
+    letter-spacing: 0px;
+    font-weight: bold;
+  }
+  
+  ion-header, ion-toolbar {
+    box-shadow: none !important;
+    --box-shadow: none !important;
+    border: none !important;
+    --border-width: 0 !important;
+    --ion-item-border-width: 0 !important;
+    --background: #16697a;
+  }
+  
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #489fb5;
+    object-fit: cover;
+    padding: 3px;
+  }
+  
+  .header-text {
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+  
+  .header-text h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ede7e3;
+    margin: 0;
+    font-family: 'Anton';
+    letter-spacing: 1px;
+  }
+  
+  .app-name {
+    color: #ede7e3;
+    text-transform: uppercase;
+  }
+  
+
+  .header-text p {
+    font-size: 14px;
+    color: #97d8c4;
+    margin: 0;
+    font-family: 'MuliBold';
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+ 
+  }
+  
+  .banner-logo {
+    width: 100%;
+    height: 65px;
+    border-radius: 10px;
+    background-image: url('../../assets/image/bannerlogo.gif');
+    background-size: cover; /* Mantém a proporção e corta o excesso */
+    background-position: top; /* Mantém o topo visível enquanto corta a parte inferior */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto com 50% de transparência */
+    background-blend-mode: multiply; /* Mistura o fundo transparente com a imagem */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Ajuste a cor do texto conforme necessário */
+    font-size: 18px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Dá um efeito de destaque ao texto */
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1px;
+}
+
+
+  .event-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    width: auto;
+    margin: 10px;
+    height: 75px;
+    /* box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1); */
+  
+  }
+  
+  .event-card:last-child {
+    border: 0px solid #cfcfcf; /* Contorno da segunda caixa */
+  }
+  
+  .event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    color: #2ec4b6;
+    font-weight: bold;
+    font-size: 35px;
+    padding: 10px;
+    margin-right: 15px;
+    font-family: 'Anton', sans-serif;
+    margin: 1;
+    margin-top: -18px;
+    letter-spacing: 1px;
+    
+  }
+  
+  .event-date .month {
+    font-size: 16px;
+    margin-top: -10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-left: 2px;
+  }
+  
+  .event-content {
+    flex-grow: 1;
+  }
+  
+  .event-title {
+    
+    font-family: 'Muli';
+    font-weight: bolder;
+    font-size: 30px;
+    margin: 0;
+    opacity: 0.6;
+    padding-top: 0px;
+  }
+  
+  .event-title-sub {
+    font-size: 11px;
+    font-weight: 600;
+    margin: 0;
+    opacity: 0.6;
+  }
+  
+  .event-description {
+    font-family: MuliBold;
+    font-size: 12px;
+    color: #666;
+    margin-top: 0px;
+    line-height: 13px;
+  }
+  
+  .event-time {
+    font-size: 20px;
+    font-weight: bold;
+    color: #427aa1;
+    font-family: 'Anton', sans-serif;
+    margin-right: 10px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  
+  }

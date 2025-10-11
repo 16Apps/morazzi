@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="fecharModal()" style="opacity: 0.6;">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <p style="font-size: 15px; font-weight: bold; font-family: 'Muli'; letter-spacing: 1px; margin-left: -20px; opacity: 0.9;">Oficinas</p>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar mode="ios" style="font-size: 13px !important; font-weight: bold; font-family: 'MuliBold'; padding-left: 10px;" placeholder="Pesquisa..."></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div style="padding: 10px;">
+
+  <ion-card>
+    <iframe style="margin: 10; border-radius: 5px; border:0;" 
+    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d8947.045634052292!2d-42.555136418359936!3d-19.465510941330237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1soficinas%20ipatinga!5e0!3m2!1spt-BR!2sbr!4v1741206578496!5m2!1spt-BR!2sbr"
+    width="100%" height="200"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <ion-card-header>
+      <ion-card-title style="font-weight: bold; font-family: 'Muli';">JR Auto Mecânica</ion-card-title>
+      <ion-card-subtitle style="font-weight: bold; font-family: 'Muli';">(031) 98827-6757</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content style="font-weight: bold; font-family: 'Muli';">
+      R. Siquem, 1185 - Canaã, Ipatinga - MG, 35164-218
+    </ion-card-content>
+
+    <ion-button fill="clear" color="secondary" style="font-weight: bold; font-family: 'Muli'; font-size: 12px;">
+      <ion-icon slot="start" name="call"></ion-icon>
+      Ligar
+    </ion-button>
+    <ion-button fill="clear" color="success" style="font-weight: bold; font-family: 'Muli'; font-size: 12px">
+      <ion-icon slot="start" name="logo-whatsapp"></ion-icon>
+      WhatsApp
+    </ion-button>
+
+  </ion-card>
+
+  <ion-card>
+    <iframe style="margin: 10; border-radius: 5px; border:0;" 
+    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d8947.045634052292!2d-42.555136418359936!3d-19.465510941330237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1soficinas%20ipatinga!5e0!3m2!1spt-BR!2sbr!4v1741206578496!5m2!1spt-BR!2sbr"
+    width="100%" height="200"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <ion-card-header>
+      <ion-card-title style="font-weight: bold; font-family: 'Muli';">Reivacar Auto Mecânica</ion-card-title>
+      <ion-card-subtitle style="font-weight: bold; font-family: 'Muli';">(031) 3821-3525</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content style="font-weight: bold; font-family: 'Muli';">
+      Av. Juscelino Kubitscheck, 735 - Jardim Panorama, Ipatinga - MG, 35164-245
+    </ion-card-content>
+
+    <ion-button fill="clear" color="secondary" style="font-weight: bold; font-family: 'Muli'; font-size: 12px">
+      <ion-icon slot="start" name="call"></ion-icon>
+      Ligar
+    </ion-button>
+    <ion-button fill="clear" color="success" style="font-weight: bold; font-family: 'Muli'; font-size: 12px">
+      <ion-icon slot="start" name="logo-whatsapp"></ion-icon>
+      WhatsApp
+    </ion-button>
+
+  </ion-card>
+
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,87 @@
+.bottom-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: transparent !important;
+  padding: 12px;
+  text-align: left;
+//   box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+  z-index: 999;
+  padding-bottom: 10px;
+}
+
+
+.item {
+    margin: 30px; 
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.label {
+    font-family: Anton;
+    font-size: 15px;
+    border: 0px !important;
+    color:#ced4da;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.input {
+    font-family: Anton;
+    font-size: 25px;
+    outline: none;
+    border: 0px !important;
+    color: #f8f9fa;
+    margin-top: -4px;
+    letter-spacing: 1px;
+}
+
+.div-right{
+    display: flex;
+    justify-content: right;
+    width: 90vw;
+}
+
+.botao {
+    color: #ffffff;
+    font-family: MuliBold;
+    font-size: 18px;
+    width: 150px;
+    --background: #ef233c !important;
+    --background-hover: #d90429 !important; /* Cor ao passar o mouse */
+    --background-activated: #d90429 !important; /* Cor quando pressionado */
+    margin-top: -15px
+}
+
+.tokem {
+    font-family: Anton;
+    font-size: 15px;
+    border: 0px !important;
+    color:#adb5bd;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.botaoDark {
+    color: #ffffff;
+    font-family: MuliBold;
+    font-size: 18px;
+    width: 150px;
+    --background: #242f40 !important;
+    --background-hover: #46494c !important; /* Cor ao passar o mouse */
+    --background-activated: #46494c !important; /* Cor quando pressionado */
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.botaoOficina {
+    color: #ffffff;
+    font-family: MuliBold;
+    font-size: 13px;
+    width: 80%;
+    --background: #242f40 !important;
+    --background-hover: #46494c !important; /* Cor ao passar o mouse */
+    --background-activated: #46494c !important; /* Cor quando pressionado */
+    margin-top: 20px;
+}

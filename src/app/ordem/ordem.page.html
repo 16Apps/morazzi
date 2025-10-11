@@ -1,0 +1,216 @@
+
+
+<ion-content>
+  <div class="profile-container">
+    <div class="background-curve">
+
+      <img src="../../assets/image/logo_branca_v.fw.png" class="fade-effect"
+        style=" position: absolute; top: 10px; left: 10px; height: 50px;">
+
+      <ion-button fill="clear" style=" position: absolute; top: 0px; right: 10px; height: 50px;  opacity: 0.6;">
+        <ion-icon slot="icon-only" name="exit-outline" style="color: #ffffff"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" style=" position: absolute; top: 0px; right: 50px; height: 50px;">
+        <ion-icon slot="icon-only" name="refresh" style="color: #ffffff"></ion-icon>
+      </ion-button>
+
+      <div class="info-container">
+        <p class="small-text">PROPOSTA</p>
+        <p class="large-text">{{ regOrdem.doc }}</p>
+        <p class="medium-text">Nota Fiscal: {{ regOrdem.nfe ? regOrdem.nfe : 'N/I' }}</p>
+        <p class="date-text">{{ regOrdem._dataExt }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div
+    style="font-family: Anton; letter-spacing: 2px; color: #3e7cb1; font-size: 30px; text-transform: uppercase;width: 100%; text-align: center; margin-top: 20px;">
+    {{ regOrdem._dataOrdemExt }}
+  </div>
+
+  <ion-card mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <img src="../../assets/image/ordem_localizacao.fw.png" />
+    <ion-card-header>
+      <ion-card-title
+        style="font-family: Anton; font-weight: normal; letter-spacing: 2px; color: #ff5d8f; font-size: 19px; text-transform: uppercase;">
+        {{ regOrdem.id_servico_regiao.bairro }}
+        <span style="opacity: 0.6;"> {{ regOrdem.id_servico_regiao.regiao }} </span>
+      </ion-card-title>
+      <ion-card-subtitle style="font-family: Anton; font-weight: normal;  letter-spacing: 2px;">
+        {{ regOrdem.id_servico_regiao.cidade }}
+        <span style="opacity: 0.6;">{{ regOrdem.id_servico_regiao.zona }} </span>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content style="font-family: 'MuliBold'; --box-shadow: none;">
+      {{ regOrdem.cliente_nome}}<br>
+      <span style="opacity: 0.7;">{{ regOrdem.cliente_celular }} </span> <br>
+      <span style="color: #f35b04">
+        {{ regOrdem.logradouro +','+ regOrdem.numero }}<br>
+      </span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <ion-card-header>
+      <ion-card-title
+        style="font-family: Anton; font-weight: normal; letter-spacing: 2px; color: #00b4d8; font-size: 22px; text-transform: uppercase;">
+        {{ regOrdem.servicos[0].descricao }}
+      </ion-card-title>
+      <ion-card-subtitle style="font-family: Anton; letter-spacing: 2px;">
+        1x
+        <span style="opacity: 0.6;">SERVIÇO</span>
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <div *ngIf="!regOrdem.conf_colaborador_data" style="text-align: center; width: 100%; margin-top: 30px;">
+
+    <p style="font-family: 'MuliBold'; text-align: center; margin: 10px; text-align: center;">
+      Podemos contar com você?
+    </p>
+    <ion-row style="margin-top: 20px;">
+      <ion-col size="5">
+        <ion-button (click)="onConfirmaOrdem('nao')" mode="ios" class="botao" style="--background: #f26a8d;">
+          Não 😕
+        </ion-button>
+      </ion-col>
+      <ion-col size="7">
+        <ion-button (click)="onConfirmaOrdem('sim')" mode="ios" class="botao" style="--background: #06d6a0;">
+          Confirmado! 👍
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-button mode="ios" class="botao" style="--background: #7f5539;">
+      Estou a caminho 🚀
+    </ion-button> -->
+
+  </div>
+
+  <ion-card *ngIf="regOrdem.conf_colaborador_data" mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <ion-card-header>
+      <ion-card-title
+        style="font-family: Anton; font-weight: normal; letter-spacing: 2px; color: #52b69a; font-size: 22px; text-transform: uppercase;">
+        {{ regOrdem._dataConfExt }}
+      </ion-card-title>
+      <ion-card-subtitle style="font-family: Anton; letter-spacing: 2px;">
+        QUANDO
+        <span style="opacity: 0.6;">CONFIRMOU</span>
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+
+  <div *ngIf="!regOrdem.acaminho_data && regOrdem.conf_colaborador_data" style="text-align: center; width: 100%; margin-top: 30px;">
+
+    <p style="font-family: 'MuliBold'; text-align: center; margin: 10px; text-align: center;">
+      Informe o cliente de sua ida
+    </p>
+
+    <ion-button (click)="onConfirmaRota()" mode="ios" class="botao" style="--background: #7f5539;">
+      Estou a caminho 🚀
+    </ion-button>
+  </div>
+
+  <ion-card *ngIf="regOrdem.acaminho_data" mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <ion-card-header>
+      <ion-card-title
+        style="font-family: Anton; font-weight: normal; letter-spacing: 2px; color: #7f5539; font-size: 22px; text-transform: uppercase;">
+       {{ regOrdem._dataCaminhoExt }}
+      </ion-card-title>
+      <ion-card-subtitle style="font-family: Anton; letter-spacing: 2px;">
+        ENTROU EM
+        <span style="opacity: 0.6;">ROTA</span>
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card *ngIf="regOrdem.acaminho_data && regOrdem.conf_colaborador_data"  mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <img src="../../assets/image/ordem_status.fw.png" />
+    <ion-card-header>
+      <ion-card-subtitle style="font-family: Anton; font-weight: normal;  letter-spacing: 2px;">
+        AVALIE A
+        <span style="opacity: 0.6;">ENTREGA </span>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content >
+      <ion-item mode="ios" class="item" style="margin: 0px;">
+        <ion-label position="stacked" class="label">Status</ion-label>
+        <ion-select [(ngModel)]="regOrdem.finalizacao_id_status_servico" class="input" label-placement="floating" fill="outline" okText="Ok" cancelText="Cancelar">
+          <ion-select-option *ngFor="let item of _regStatus" value="{{ item._id}}">
+            {{item.status }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item mode="ios" class="item" style="margin: 0px; margin-top: 10px;">
+        <ion-label position="stacked" class="label">Nota</ion-label>
+        <ion-input [(ngModel)]="regOrdem.finalizacao_nota_colaborador" class="input" type="text"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="regOrdem.acaminho_data && regOrdem.conf_colaborador_data" mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <img src="../../assets/image/ordem_atendeu.fw.png" />
+    <ion-card-header>
+      <ion-card-subtitle style="font-family: Anton; font-weight: normal;  letter-spacing: 2px;">
+        QUEM LHE 
+        <span style="opacity: 0.6;">ATENDEU? </span>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content >
+      <ion-item mode="ios" class="item" style="margin: 0px;">
+        <ion-label position="stacked" class="label">Nome</ion-label>
+        <ion-input [(ngModel)]="regOrdem.finalizacao_atendido_nome" class="input" type="text"></ion-input>
+      </ion-item>
+    
+      <ion-item mode="ios" class="item" style="margin: 0px; margin-top: 10px;">
+        <ion-label position="stacked" class="label">Documento</ion-label>
+        <ion-input [(ngModel)]="regOrdem.finalizacao_atendido_doc" class="input" type="text"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="regOrdem.acaminho_data && regOrdem.conf_colaborador_data" mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <img src="../../assets/image/ordem_foto.fw.png" />
+    <ion-card-header>
+      <ion-card-subtitle style="font-family: Anton; font-weight: normal;  letter-spacing: 2px;">
+        REGISTRE 
+        <span style="opacity: 0.6;">UMA FOTO </span>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+
+    <ion-card-content >
+      <div style="text-align: center;">
+        <img src="{{ regOrdem._registro_foto1 }}" (click)="onFoto()" style="border-radius: 10px; max-height: 300px;" />
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div (click)="onRegistraOrdem()" *ngIf="regOrdem.acaminho_data && regOrdem.conf_colaborador_data && !regOrdem.finalizacao_data" style="text-align: center; width: 100%; margin-top: 30px; margin-bottom: 30px;">
+    <ion-button mode="ios" class="botao" style="--background: #0077b6;">
+      Terminei ! 😉
+    </ion-button>
+  </div>
+
+  <ion-card *ngIf="regOrdem.finalizacao_data" mode="ios" style="--box-shadow: none !important; margin-top: 3px;">
+    <ion-card-header>
+      <ion-card-title
+        style="font-family: Anton; font-weight: normal; letter-spacing: 2px; color: #ffa200; font-size: 22px; text-transform: uppercase;">
+       {{ regOrdem._dataFimExt }}
+      </ion-card-title>
+      <ion-card-subtitle style="font-family: Anton; letter-spacing: 2px;">
+        ORDEM
+        <span style="opacity: 0.6;">FINALIZADA</span>
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+
+</ion-content>

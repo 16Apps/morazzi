@@ -1,0 +1,209 @@
+.phone-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.flag-select {
+    border: 0px solid #ddd;
+    background: #f6f6f6;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 6px 10px;
+    cursor: pointer;
+    outline: none;
+    height: 55px !important;
+}
+
+
+.phone-box {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    background: #f6f6f6;
+    border: 0px solid #ddd;
+    border-radius: 8px;
+    padding: 6px 10px;
+    flex: 1;
+}
+
+.phone-box .ddi {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-right: 8px;
+    font-family: MuliBold;
+    font-weight: 800;
+}
+
+.phone-box ion-input {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+    flex: 1;
+    width: 90% !important;
+    font-family: MuliBold;
+    font-weight: 800;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px; // espaçamento entre inputs
+}
+
+.otp-container input {
+    width: 40px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background: #f4f2f2;
+    text-align: center;
+    font-size: 24px;
+    outline: none;
+    font-family: MuliBold;
+}
+
+.vehicle-card {
+    border-radius: 12px;
+    font-family: 'Muli', sans-serif;
+    box-shadow: none !important;
+    --background: #f8f9fa;
+    margin: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.vehicle-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: #212529;
+}
+
+.vehicle-header p {
+    margin: 0;
+    font-size: 12px;
+    color: #343a40;
+}
+
+.vehicle-image {
+    text-align: center;
+    margin: 12px 0;
+}
+
+.vehicle-image img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.vehicle-attributes {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.vehicle-attributes div {
+    text-align: center;
+}
+
+.vehicle-attributes h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #212529;
+}
+
+.vehicle-attributes p {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #343a40;
+}
+
+.vehicle-km {
+    margin-top: 8px;
+
+}
+
+.vehicle-km h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #212529;
+    font-family: MuliBold;
+}
+
+.vehicle-km p {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #0077b6;
+    text-decoration: underline;
+    font-weight: bold;
+    font-family: MuliBold;
+}
+
+.block {
+    padding-top: 10px;
+    width: 100%;
+    height: 240px;
+    border-top-left-radius: 30px;
+}
+
+ion-modal {
+    --height: auto;
+}
+
+.custom-km-input {
+    --padding-start: 0;
+    --padding-end: 0;
+    --border-width: 0;
+    --highlight-color-focused: transparent;
+    --background: transparent;
+
+    font-size: 24px;
+    color: #002b5c;
+    font-weight: bold;
+    text-align: center;
+
+    border-bottom: 2px solid #457b9d;
+    width: fit-content;
+    margin: 0 auto;
+    font-family: MuliBold;
+    font-weight: bold;
+}
+
+
+.modal-content {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-family: MuliBold;
+    text-align: center;
+    background: #f6f6f6;
+}
+
+.progress-bar {
+    width: 50px;
+    height: 4px;
+    background: #3b82f6;
+    /* azul */
+    border-radius: 2px;
+    margin: 0 auto 16px auto;
+}
+
+.clock-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.modal-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-family: MuliBold;
+}
+
+.modal-content p {
+    font-size: 11px;
+    color: #555;
+    font-family: MuliBold;
+}

@@ -1,0 +1,43 @@
+.item {
+    margin: 30px; 
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.label {
+    font-family: Anton;
+    font-size: 15px;
+    border: 0px !important;
+    color:#ced4da;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.input {
+    font-family: Anton;
+    font-size: 25px;
+    outline: none;
+    border: 0px !important;
+    color: #f8f9fa;
+    margin-top: -4px;
+    letter-spacing: 1px;
+}
+
+.div-right{
+    display: flex;
+    justify-content: right;
+    width: 90vw;
+}
+
+.botao {
+    color: #ffffff;
+    font-family: Anton;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    width: 110px;
+    --background: #ef233c !important;
+    --background-hover: #d90429 !important; /* Cor ao passar o mouse */
+    --background-activated: #d90429 !important; /* Cor quando pressionado */
+    margin-top: -15px
+}

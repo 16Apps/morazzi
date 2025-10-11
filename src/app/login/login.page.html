@@ -1,0 +1,199 @@
+<ion-content [fullscreen]="true" style="--background: #181a1b; ">
+  <div [ngStyle]="{'background-image': backgroundImage}"
+    style="text-align: center; padding-top: 20px;  background-size: auto 100%; height: 100%;">
+  </div>
+</ion-content>
+
+<div class="bottom-fixed">
+  <img src="../../assets/image/logo.fw.png" style="height: 90px; margin-left: 10px; margin-bottom: -20px;">
+
+  <h2
+    style=" font-size: 19px; font-weight: bold; margin: 16px; font-family: MuliBold; text-align: left; color: #ffffff;">
+    Aqui você encontra,<br>do projeto a decoração.
+  </h2>
+  <!-- <p style=" font-size: 11px; font-weight: bold; margin: 16px; font-family: Muli; text-align: left; color: #ffffff;">
+    Viva novas experiências,<br> viva novas aventuras!
+  </p> -->
+
+  <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button (click)="onNovaConta()" fill="solid" size="small" expand="block" mode="ios"  style=" 
+      --background: #DFDFD0;
+      --color: #333;
+      --border-radius: 20px;
+      height: 40px;
+      min-height: 40px;
+      padding: 10px;
+      font-size: 12px;
+      font-family: Muli;
+      width: 100% !important;
+      margin-top: -15px;
+    ">
+    <!-- <ion-icon slot="start" name="add-circle-outline"></ion-icon> -->
+          Sou novo aqui! 😊 
+        </ion-button>
+
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+    <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button fill="solid" size="small" expand="block" mode="ios" style=" 
+      --background: transparent;
+      --color: #ffffff;
+      --border-radius: 20px;
+      height: 40px;
+      min-height: 40px;
+      padding: 10px;
+      font-size: 12px;
+      font-family: MuliBold;
+      width: 100% !important;
+      margin-top: 15px;
+    ">
+          Parceiro? Acesse aqui
+        </ion-button>
+
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+<!-- <ion-footer class="ion-no-border">
+  <ion-toolbar style=" --background: #181a1b; padding: 20px;  ">
+
+    <p *ngIf="etapaAcesso == 'bemvindo'"
+      style=" text-align: center; font-family: Muli; font-size: 14px; letter-spacing: 1px; color: #FFFFFF ; margin-bottom: 130px; ">
+      <span style="font-size: 18px;"> Olá, motorista!</span><br><br>
+      <span style="opacity: 0.6;">
+        Cuide do seu carro como ele cuida de você. Registre seus quilômetros e receba alertas inteligentes de
+        manutenção!
+      </span>
+
+      <ion-button (click)="onMudaModo()" mode="ios" class="botaoOficina">
+        <ion-label style="color: #ffffff !important; height: 8px !important; margin-top: -8px;">
+          Sou uma Oficina
+        </ion-label>
+      </ion-button>
+    </p>
+
+    <p *ngIf="etapaAcesso == 'celular'"
+      style=" text-align: center; font-family: Muli; font-size: 14px; letter-spacing: 1px; color: #FFFFFF ; margin-bottom: 130px; ">
+      <ion-input [(ngModel)]="celular" class="input" type="tel" maxlength="16" inputmode="tel"
+        placeholder="(00) 00000-0000" [maskito]="phoneMask" [maskitoElement]="maskPredicate">
+      </ion-input>
+      <span style="opacity: 0.6; font-size: 12px;">
+        Informe um número válido para envio da <br>
+        chave no WhatsApp
+      </span>
+    </p>
+
+    <p *ngIf="etapaAcesso == 'whatsapp'"
+      style=" text-align: center; font-family: Muli; font-size: 14px; letter-spacing: 1px; color: #FFFFFF ; margin-bottom: 130px; ">
+      <ion-input [(ngModel)]="chave" class="input" type="tel" maxlength="4" inputmode="tel" placeholder="0000"
+        [maskito]="chaveMask" [maskitoElement]="maskPredicate">
+      </ion-input>
+      <span style="opacity: 0.6; font-size: 12px;">
+        Informe a chave que <br>
+        enviamos, para o seu WhatsApp
+      </span>
+    </p>
+
+    <p *ngIf="etapaAcesso == 'nome'"
+      style=" text-align: center; font-family: Muli; font-size: 14px; letter-spacing: 1px; color: #FFFFFF ; margin-bottom: 130px; ">
+      <ion-input [(ngModel)]="nome" class="input" type="text" placeholder="Seu nome aqui"
+        (ionInput)="nome = capitalizeWords(nome)">
+      </ion-input>
+      <span style="opacity: 0.6; font-size: 12px;">
+        Viu como foi
+        rapidinho!
+      </span>
+    </p>
+
+    <p *ngIf="etapaAcesso == 'nome_oficina'"
+      style=" text-align: center; font-family: Muli; font-size: 14px; letter-spacing: 1px; color: #FFFFFF ; margin-bottom: 130px; ">
+      <ion-input [(ngModel)]="_editOficina.nome" class="input" type="text" placeholder="Nome da oficina aqui"
+        (ionInput)="_editOficina.nome = capitalizeWords(_editOficina.nome)">
+      </ion-input>
+      <span style="opacity: 0.6; font-size: 12px;">
+        Viu como foi
+        rapidinho!
+      </span>
+    </p>
+
+    <p *ngIf="etapaAcesso == 'bio'"
+      style=" text-align: center; font-family: Muli; font-size: 14px; letter-spacing: 1px; color: #FFFFFF ; margin-bottom: 130px; ">
+      <span style="font-size: 18px;">Proteção total dos<br>seus dados</span><br><br>
+      <span style="opacity: 0.6; font-size: 12px;">
+        Acesso rápido e seguro ao CheckKM com sua biometria.
+      </span>
+    </p>
+
+  </ion-toolbar>
+</ion-footer> -->
+
+<!-- <ion-fab *ngIf="etapaAcesso != 'bio'" slot="fixed" vertical="bottom" horizontal="end" style="margin: 10px;">
+  <ion-fab-button (click)="onMudaEtapa()" color="warning">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab *ngIf="etapaAcesso == 'bio'" slot="fixed" vertical="bottom" horizontal="end" style="margin: 10px;">
+  <ion-fab-button (click)="onMudaEtapa()" color="success">
+    <ion-icon name="finger-print-outline" style="color: #ffffff"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->
+
+<!-- <ion-header [translucent]="true">
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <div style="text-align: center; padding-top: 60px;">
+    <img src="../../assets/image/logo.fw.png" style="width: 50%;">
+  </div>
+  <p style=" text-align: center; font-family: MuliBold; font-size: 10px; letter-spacing: 1px; color: #9197ae  ">
+    GESTÃO DOS KMs<br> DO SEU CARRO
+  </p>
+
+  <ion-item mode="ios" class="item">
+    <ion-label position="stacked" class="label">Celular</ion-label>
+    <ion-input [(ngModel)]="celular" (ionInput)="onAcesso($event)" class="input" type="tel" maxlength="16" inputmode="tel" placeholder="(00) 00000-0000"
+      [maskito]="phoneMask" [maskitoElement]="maskPredicate">
+    </ion-input>
+  </ion-item>
+
+  <ion-item mode="ios" class="item">
+    <ion-label position="stacked" class="label">Chave</ion-label>
+    <ion-input [(ngModel)]="chave" class="input" type="password"></ion-input>
+  </ion-item>
+  <p
+    style=" text-align: center; font-family: MuliBold; font-size: 10px; letter-spacing: 1px; color: #9197ae;margin-top: -20px;  ">
+    ENVIADA PARA O SEU <span style="color: #99d98c">WHATSAPP</span>
+  </p>
+
+  <div class="div-right" style="margin-top: 50px;">
+    <ion-button (click)="onAcesso('acesso')" mode="ios" class="botao">Acessar</ion-button>
+  </div>
+
+</ion-content>
+
+<ion-footer (click)="onNovaConta()" class="ion-no-border" style="text-align:right ;">
+  <ion-toolbar style="padding-right: 10px; --background: #495057;;">
+    <ion-label position="stacked" class="tokem">
+      ⭐ SOU NOVO AQUI ! ⭐
+    </ion-label>
+  </ion-toolbar>
+</ion-footer> -->

@@ -1,0 +1,99 @@
+<ion-header [translucent]="true" style="box-shadow: none !important;">
+  <ion-toolbar style="--background: #ffffff;">
+  <div class="profile-container">
+    <div class="background-curve">
+
+
+      <img src="../../assets/image/logo_branca_v.fw.png" class="fade-effect"
+        style=" position: absolute; top: 10px; left: 10px; height: 50px;">
+
+      <ion-button (click)="onSair()" fill="clear" style=" position: absolute; top: 0px; right: 10px; height: 50px;">
+        <ion-icon slot="icon-only" name="exit-outline" style="color: #ffffff"></ion-icon>
+      </ion-button>
+
+    </div>
+
+    <div *ngIf="_colaboradoresFila.length > 0">
+      <div class="image-container">
+        <ion-fab-button (click)="onCancelaFila(_colaboradoresFila[0])" class="fab-left" color="danger"
+          *ngIf="_colaboradoresFila[0]._fila == 1">
+          <ion-icon name="person-remove"></ion-icon>
+        </ion-fab-button>
+
+        <div class="profile-picture">
+          <img
+            [src]="_colaboradoresFila[0]._fila == 0 ? '../../assets/image/fila_vendedor.gif' : _colaboradoresFila[0]._foto" />
+        </div>
+
+        <ion-fab-button (click)="onEntrarAtendimento(_colaboradoresFila[0])" *ngIf="_colaboradoresFila[0]._fila == 1"
+          class="fab-right" color="warning">
+          <ion-icon name="bag" style="color: #ffffff"></ion-icon>
+        </ion-fab-button>
+      </div>
+
+      <div class="profile-info">
+        <h2 class="name">{{ _colaboradoresFila[0]._fila == 0 ? 'Aguardando...' : _colaboradoresFila[0].nome_curto }}
+        </h2>
+        <!-- <p class="role">{{ _colaboradoresFila[0]._fila == 0 ? '00:00:00' : _colaboradoresFila[0].hora_saida }}</p> -->
+        <ion-badge color="secondary" style="margin-top: 10px;">
+          {{ _colaboradoresFila[0].registro.atendimento_numero_dia }}
+        </ion-badge>
+      </div>
+    </div>
+  </div>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list mode="ios" style="margin-top: 20px;">
+
+    <ion-item-sliding #slidingItem *ngFor="let item of _colaboradoresFila">
+      <ion-item [button]="true" mode="ios" *ngIf="item._fila == 0">
+        <ion-avatar aria-hidden="true" slot="start">
+          <img alt="" src="{{ item._foto }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.nome_curto }} </h2>
+          <p *ngIf="item.registro.status== 'ausente'" style="color: #e56b6f;">Ausente</p>
+          <p *ngIf="item.registro.status== 'atendimento'" style="color: #fca311;">Em Atendimento</p>
+          <p *ngIf="item.registro.status== 'fila'">Fila Atendimento</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options slot="end">
+        <ion-item-option (click)="onPresenca(item, slidingItem)" color="light" *ngIf="item.registro.status== 'ausente'">
+          <ion-icon slot="icon-only" name="checkmark" color="success"></ion-icon>
+        </ion-item-option>
+
+        <ion-item-option (click)="onFinalizaAtendimento(item, slidingItem)" color="light"
+          *ngIf="item.registro.status== 'atendimento'">
+          <ion-icon slot="icon-only" name="checkmark" color="success"></ion-icon>
+        </ion-item-option>
+
+
+        <ion-item-option (click)="onPosicao(item, slidingItem)" color="light" *ngIf="item.registro.status== 'fila'">
+          <ion-icon slot="icon-only" name="caret-up-outline" color="success"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="onPosicaoBaixar(item, slidingItem)" color="light"
+          *ngIf="item.registro.status== 'fila'">
+          <ion-icon slot="icon-only" name="caret-down-outline" color="medium"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="onEntrarAtendimentoLista(item, slidingItem)" color="light"
+          *ngIf="item.registro.status== 'fila'">
+          <ion-icon slot="icon-only" name="bag" color="warning"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="onPresenca(item, slidingItem)" color="light" *ngIf="item.registro.status== 'fila'">
+          <ion-icon slot="icon-only" name="close" color="danger"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+
+  </ion-list>
+
+
+
+
+
+</ion-content>

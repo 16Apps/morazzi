@@ -1,0 +1,169 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="fecharModal()" style="opacity: 0.6;">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <p
+        style="font-size: 15px; font-weight: bold; font-family: 'Muli'; letter-spacing: 1px; margin-left: -20px; opacity: 0.9;">
+        Orçamento
+      </p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="car-container" style="margin-top: 10px;">
+    <ion-card class="car-card"
+      style="border-top: 5px solid #4c5c68 ; background-color: #46494c; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; height: 170px;">
+      <p
+        style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 13px; color: #ffffff">
+        {{ _regVeiculosMotorista.id_veiculo.marca }} {{ _regVeiculosMotorista.id_veiculo.modelo }} {{
+        _regVeiculosMotorista.id_veiculo.ano }}
+      </p>
+
+      <p *ngIf="returnPage!='motorista'"
+        style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 10px; color: #ffffff; text-transform: uppercase;">
+        {{ _regVeiculosMotorista.id_motorista.nome }} {{ _regVeiculosMotorista.id_motorista.sobrenome }}
+        <span style="color: #a7c957 !important; font-size: 9px;"><br>
+          {{ _regVeiculosMotorista.id_motorista.bairro }} -
+          {{ _regVeiculosMotorista.id_motorista.cidade }} / {{ _regVeiculosMotorista.id_motorista.estado }}
+        </span>
+      </p>
+
+      <p *ngIf="returnPage=='motorista'"
+        style="text-align: center; margin-top: 5px; font-family: 'MuliBold'; margin-top: 10px; font-size: 10px; color: #ffffff; text-transform: uppercase;">
+        {{ _regOficina.nome }} 
+        <span style="color: #a7c957 !important; font-size: 9px;"><br>
+          {{ _regOficina.bairro }} -
+          {{ _regOficina.cidade }} / {{ _regOficina.estado }}
+        </span>
+      </p>
+
+      <ion-row style="margin-top: 5px;">
+        <ion-col size="6">
+          <ion-button mode="ios" color="warning" fill="outline"
+            style="font-size: 11px; font-family: 'MuliBold'; width: 100%;; ">
+            <ion-icon slot="start" name="speedometer-outline"
+              style="margin-right: 10px; color: #f7b801 !important"></ion-icon>
+            <span *ngIf="_regVeiculosMotorista.id_veiculo.quilometragem.length > 0 " style="color: #f7b801 !important">
+              {{ _regVeiculosMotorista.id_veiculo.quilometragem[_regVeiculosMotorista.id_veiculo.quilometragem.length
+              -1].km | number: '1.0-0' }}km
+            </span>
+            <span *ngIf="_regVeiculosMotorista.id_veiculo.quilometragem.length == 0 " style="color: #f7b801 !important">
+              Informar KM
+            </span>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" *ngIf="_regVeiculosMotorista.servico != undefined">
+          <ion-button mode="ios" color="danger" fill="outline"
+            style="font-size: 11px; font-family: 'MuliBold'; width: 98%;">
+            <ion-icon slot="start" name="build-outline"
+              style="margin-right: 10px; color: #ef233c !important"></ion-icon>
+            <span style="color: #ef233c !important">
+              {{ _regVeiculosMotorista.servico.quilometragem | number: '1.0-0' }}km
+            </span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </div>
+
+  <div class="car-container" style="margin-top: -40px; height: auto !important; ">
+    <ion-card class="car-card"
+      style="border-top: 5px solid #ccc5b9 ; height: auto !important; background-color: #eaebed; border-top-right-radius: 0px; border-top-left-radius: 0px; height: 90px;">
+
+      <div style="padding: 10px; ">
+
+        <div style="padding: 10px; margin-top: -10px;">
+          <ion-button mode="ios" color="light"
+            style="font-size: 12px; font-family: 'MuliBold'; letter-spacing: 1px; font-weight:800; width: 98%;">
+            <span style="color: #ffffff !important; text-transform: uppercase;">
+              {{ formataData(_regVeiculosMotorista.servico.data_agendamento_inicial) }} à
+              {{ formataData(_regVeiculosMotorista.servico.data_agendamento_final) }}
+            </span>
+          </ion-button>
+        </div>
+
+        <ion-grid style="padding: 10px;">
+          <div *ngFor="let item of _regOrcamento.servicos_itens; let i = index">
+            <ion-row>
+              <ion-col size="1">
+                <ion-icon
+                  [name]="item.fabricantes_recomendados.length > 0 ? 'construct-outline' : 'speedometer-outline'"
+                  [color]="item.fabricantes_recomendados.length > 0 ? 'medium' : 'medium'">
+                </ion-icon>
+              </ion-col>
+              <ion-col size="11" style="font-weight: bold; font-family: 'Muli'; color: #46494c; font-size: 13px;">
+                {{ item.descricao }}
+              </ion-col>
+            </ion-row>
+            <ion-grid>
+              <ion-row style="background-color: #d9d9d9; border-radius: 5px; color: #46494c; ">
+                <ion-col size="7">
+
+                  <ion-select *ngIf="item.fabricantes_recomendados.length > 0" [(ngModel)]="item.escolha_fabricante"
+                    placeholder="{{ item.descricao }}" mode="ios"
+                    style="margin-left: 4px; color: #46494c !important;  font-size: 10px; font-family: MuliBold;">
+                    <ion-select-option value="">Não Fornecido</ion-select-option>
+                    <ion-select-option *ngFor="let fabricante of item.fabricantes_recomendados"
+                      value="{{ fabricante.fabricante }}">
+                      {{ fabricante.fabricante }}
+                    </ion-select-option>
+                    <ion-select-option value="0">Outro</ion-select-option>
+                  </ion-select>
+
+                </ion-col>
+                <ion-col size="1">
+                  <ion-input [(ngModel)]="item.quantidade"
+                    [disabled]="!item.escolha_fabricante && item.fabricantes_recomendados.length > 0"
+                    (ionChange)="onCalculoQnt($event, i);" class="input" type="tel"
+                    style="font-size: 10px; text-align: right; font-family: MuliBold;"></ion-input>
+                </ion-col>
+                <ion-col size="2">
+                  <input [(ngModel)]="item.valor"
+                    [disabled]="!item.escolha_fabricante  && item.fabricantes_recomendados.length > 0"
+                    (keyup)="moedaBR($event, i);" (blur)="moedaBRModel($event, 'valorItem', i);" class="input"
+                    type="tel" style="font-size: 10px; text-align: right; font-family: MuliBold; margin-top: 14px;">
+                </ion-col>
+                <ion-col size="2">
+                  <ion-input [(ngModel)]="item.valor_total" class="input" disabled type="tel"
+                    style="font-size: 10px; text-align: right; font-family: MuliBold; padding-right: 5px;"></ion-input>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-grid>
+
+        <div style="padding: 10px;">
+          <ion-item class="force-light-theme" mode="ios">
+            <ion-input [(ngModel)]="_regOrcamento.observacoes_servicos" label="Observação"></ion-input>
+          </ion-item>
+          <ion-item class="force-light-theme" mode="ios">
+            <ion-input label="Total Itens" style="text-align: right; color: #adb5bd" readonly
+              [(ngModel)]="_regOrcamento.total_itens"></ion-input>
+          </ion-item>
+          <ion-item class="force-light-theme" mode="ios">
+            <ion-input label="Desconto %" style="text-align: right; color: #ff595e " type="tel"
+              [(ngModel)]="_regOrcamento.desconto" (ionChange)="onCalculoTotal();"></ion-input>
+          </ion-item>
+
+          <ion-button (click)="onRegistraOrcamento()" id="open-modal" expand="block" mode="ios" color="secondary"
+            class="ion-no-dark"
+            style="font-size: 12px; font-family: 'MuliBold'; letter-spacing: 1px; font-weight:800; width: 100%; margin-bottom: 30px; margin-top: 20px;">
+            <span style="color: #ffffff !important">
+              ENVIAR ORÇAMENTO R$ {{ onFormataReal(_regOrcamento.total) }}
+            </span>
+          </ion-button>
+        </div>
+
+      </div>
+    </ion-card>
+  </div>
+
+
+</ion-content>
