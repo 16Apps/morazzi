@@ -10,6 +10,7 @@ import { UteisService } from '../services/uteis.service';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 
 import { NovacontaPage } from '../novaconta/novaconta.page';
+import { ParceiroAcessoPage } from '../parceiro-acesso/parceiro-acesso.page';
 
 import * as moment from 'moment';
 moment.locale('pt-br');
@@ -50,8 +51,8 @@ export class LoginPage implements OnInit {
     ],
   };
 
-  
-  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
+
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as unknown as HTMLIonInputElement).getInputElement();
 
   modo: string = 'motorista'
   etapaAcesso: string = 'bemvindo'
@@ -98,7 +99,7 @@ export class LoginPage implements OnInit {
 
   async abrirLoginGoogle() {
 
-    
+
     const token = await this.googleAuth.loginWithGoogle();
     let i = token.toString()
 
@@ -112,13 +113,36 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async onNovaConta() {
+  
+
+  async onAcessoParceiro() {
+
+    const modal = await this.modalController
+      .create({
+        component: ParceiroAcessoPage,
+        componentProps: {
+          returnPage: 'login'
+        },
+      });
+
+    modal.present();
+
+    modal.onDidDismiss().then(async data => {
+      // await this.onListaPedidos();
+      // this.onDadosLocais(false);
+    });
+
+    // this.navCtrl.navigateRoot('novaconta');
+  }
+
+  async onNovaConta(acao: string) {
 
     const modal = await this.modalController
       .create({
         component: NovacontaPage,
         componentProps: {
-          returnPage: 'login'
+          returnPage: 'login',
+          acao: acao
         },
       });
 
@@ -397,78 +421,6 @@ export class LoginPage implements OnInit {
 
   };
 
-
-
-  onAcesso(event: any) {
-
-    if (event == 'acesso') {
-
-      if (!this.chave || !this.chave_ || !this.celular) {
-        this.uteisService.onToast('Informe os dados de Acesso.', 2000, 'middle', 'error');
-        return;
-      };
-
-      if (this.chave == this.chave_) {
-
-        this.uteisService.salvarBase('motorista_', this._regMotorista)
-
-        this.uteisService.onToast('Tudo certo, vamos lá!', 2000, 'middle', 'normal');
-        setTimeout(() => {
-          this.navCtrl.navigateRoot('tabs/tab1');
-        }, 1200);
-
-      } else {
-
-        this.uteisService.onToast('A Chave não confere.', 2000, 'middle', 'error');
-
-      };
-
-      return;
-    };
-
-    if (this.celular.length == 15) {
-
-      this.uteisService.onLoading('Processando...', 3000)
-
-      setTimeout(() => {
-
-        this.apiService.getServer('/_checkkm?c=motoristas&celular=' + this.celular, 2000).then(
-          (data: any) => {
-
-            if (data.length == 0) {
-
-              this.uteisService.onHideLoading();
-
-              this.uteisService.questionAlert('Ops..', 'Não localizamos o seu cadastro.', '', 'Repetir', 'Cadastrar').then((res: any) => {
-                if (res == 'btn1') {
-                  this.celular = ''
-                } else {
-                  this.onNovaConta()
-                }
-              })
-
-            } else {
-
-              this._regMotorista = data;
-
-              this.chave_ = this.uteisService.gerarChave();
-
-              this.uteisService.sendWhats(this.celular, 'Sua chave _itour_ é *' + this.chave_ + '* 🚗🏍️🚛🚀. Seja bem novamente! ☺️').then(() => {
-                this.uteisService.onToast('Sua chave de acesso foi enviada para o seu WhatsApp.', 2000, 'middle', 'normal');
-                this.uteisService.onHideLoading();
-              })
-
-            };
-
-          },
-          (error: any) => {
-            this.uteisService.onToast('Verifique sua conexão com a internet.', 2000, 'middle', 'error')
-            this.uteisService.onHideLoading();
-          });
-
-      }, 2000);
-    };
-  };
 
   capitalizeWords(str: string) {
     return str.replace(/\b\w/g, char => char.toUpperCase());

@@ -16,16 +16,19 @@
     <div class="user-header">
       <div class="user-info">
         <div class="user-name">
-          <h2>{{ _regCliente != undefined ?  _regCliente.nome : 'Carregando...'}}</h2>
+          <h2>{{ _regCliente != undefined ? _regCliente.nome : 'Carregando...'}}</h2>
           <p class="user-company">
-            {{ _regCliente != undefined ? _regCliente.endereco.cidade +'/'+ _regCliente.endereco.estado : 'Carregando...' }}</p>
+            {{ _regCliente != undefined ? _regCliente.endereco.cidade +'/'+ _regCliente.endereco.estado :
+            'Carregando...' }}</p>
           <p class="user-points">
-            <ion-icon name="flash-outline"></ion-icon> 100 pts
+            <ion-icon name="flash-outline"></ion-icon> {{ _regCliente != undefined ? _regCliente.cashback : '0' }} pts
           </p>
         </div>
       </div>
       <div class="user-avatar">
-        <img src="{{ _regCliente != undefined ?_regCliente._foto : 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg' }}" alt="Foto do usuário">
+        <img
+          src="{{ _regCliente != undefined ?_regCliente._foto : 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg' }}"
+          alt="Foto do usuário">
       </div>
     </div>
   </ion-toolbar>
@@ -40,10 +43,16 @@
 
 <ion-content style="--background: #F5F5F5;  ">
 
-  <ion-searchbar mode="ios" placeholder="" style="font-family: 'MuliBold'"></ion-searchbar>
+<ion-searchbar
+  [(ngModel)]="_txtBusca"
+  (keyup.enter)="onChatIA()"
+  mode="ios"
+  placeholder="Buscar"
+  style="font-family: 'MuliBold'">
+</ion-searchbar>
 
-  <div style="text-align: center;">
-    <img src="../../assets/image/banner_bemvindo.png" alt="CheckKm" style="width: 100%;">
+  <div style="text-align: center;" (click)="onChatIA()">
+    <img src="../../assets/image/banner_ia.fw.png" alt="CheckKm" style="width: 100%;">
   </div>
 
   <div class="section-card" (click)="toggleSection('projeto')">

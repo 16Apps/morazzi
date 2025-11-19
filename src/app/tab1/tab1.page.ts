@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { Platform, NavController, ModalController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
 import { UteisService } from '../services/uteis.service';
+import { Router } from '@angular/router';
 
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 
@@ -10,7 +11,6 @@ import { IonModal } from '@ionic/angular';
 
 import * as moment from 'moment';
 moment.locale('pt-br');
-
 
 @Component({
   selector: 'app-tab1',
@@ -54,7 +54,7 @@ export class Tab1Page {
     ],
   };
 
-  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as unknown as HTMLIonInputElement).getInputElement();
 
   constructor(
     private apiService: ApiService,
@@ -62,18 +62,22 @@ export class Tab1Page {
     private platform: Platform,
     private modalController: ModalController,
     private navCtrl: NavController,
-    public zone: NgZone) {
+    public zone: NgZone,
+    private router: Router) {
 
     this.platform.ready().then(async () => {
 
       this.uteisService.buscarRegistros('cliente_').then((data: any) => {
         this._regCliente = data[0];
-                this._regCliente['_foto'] = 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg'
+        this._regCliente['_foto'] = 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg'
         if (this._regCliente.foto != '') {
           this._regCliente._foto = this.apiService.baseUrl + '/image/' + this._regCliente.foto
         };
         //alert(JSON.stringify(data))
+
+        this.onAtualizaCliente()
       });
+
 
       this.onCarregaParceiros();
 
@@ -99,6 +103,17 @@ export class Tab1Page {
 
       });
 
+    //atualiza dados venda
+    _url = '/_bd?c=vendas'
+    _url += "&pop=id_parceiro"
+    _url += "&id_cliente=" + this._regCliente._id
+    _url += "&_sort=editado_em"
+
+    await this.apiService.getServer(_url, 2000)
+      .then(async (data: any) => {
+        await this.uteisService.salvarBase('vendas_', data)
+      });
+
   };
 
   async onCarregaParceiros() {
@@ -121,6 +136,11 @@ export class Tab1Page {
       });
 
   };
+
+  async onChatIA() {
+    await this.router.navigate(['/tabs/tab5', { busca: this._txtBusca }]);
+    this._txtBusca = '';
+  }
 
   async onSair() {
 

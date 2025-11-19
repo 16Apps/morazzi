@@ -1,0 +1,110 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #672438; ">
+
+    <ion-title style="text-align: left;">
+      <img src="../../assets/image/logo.fw.png" style="height: 60px; margin-left: 10px;">
+    </ion-title>
+
+    <ion-buttons slot="end" style="margin-top: -10px;">
+      <ion-button style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="logo-reddit" style="font-size: 26px;"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: #672438;  margin-top: -25px; height: 33px;  ">
+    <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="chat-content">
+
+  <div class="chat-container">
+
+    <!-- Mensagem IA -->
+    <div *ngFor="let item of _historico; let i = index"
+      [ngClass]="{'message ai': item.role === 'assistant', 'message user': item.role === 'user'}">
+
+      <div class="bubble" *ngIf="!item.parceiro" [innerHTML]="formatMessage(item.content)"></div>
+
+      <div class="partner-card" *ngIf="item.parceiro">
+        <img *ngIf="item.logo" [src]="item.logo" alt="{{ item.nome_fantasia }}" class="partner-logo">
+
+        <div class="partner-info">
+          <h3 class="partner-name">{{ item.nome_fantasia || item.razao_social }}</h3>
+
+          <p class="partner-phone" *ngIf="item.telefone || item.celular" (click)="onRegistroLeadBot(item.id_parceiro, 'clique_whats')" >
+            📞 {{ item.celular || item.telefone }}
+          </p>
+
+          <div class="partner-links">
+            <a *ngIf="item.site" [href]="item.site" (click)="onRegistroLeadBot(item.id_parceiro, 'clique_site')" target="_blank" rel="noopener noreferrer">
+              🌐 Site
+            </a>
+            <a *ngIf="item.instagram" [href]="item.instagram" (click)="onRegistroLeadBot(item.id_parceiro, 'clique_social')" target="_blank" rel="noopener noreferrer">
+              📸 Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="_iaDigitando" class="message ai">
+      <div class="bubble typing-bubble">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <!-- Mensagem Usuário -->
+    <!-- <div class="message user">
+      <div class="bubble">
+        Quero encontrar um pedreiro para acabamento.
+      </div>
+    </div> -->
+
+    <!-- Outra mensagem IA -->
+    <!-- <div class="message ai">
+      <div class="bubble">
+        Perfeito! Posso indicar parceiros próximos da sua região.  
+        Deseja que eu mostre os **melhores avaliados** ou **os mais próximos**?
+      </div>
+    </div> -->
+
+  </div>
+
+  <ion-modal #modalCash trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
+    [backdropDismiss]="false" mode="ios">
+    <ng-template>
+      <div class="modal-content">
+        <!-- <div class="progress-bar"></div> -->
+         <h3 style="font-size: 30px; font-weight: bold; letter-spacing: -2px; font-family: MuliBold; ">Fechou negócio?</h3><br>
+       
+          <img src="../../assets/image/cashback.fw.png" style="width: 90%;">
+      
+        <h3 style="padding: 20px;">Lembre-se de pedir para registrar a venda na plataforma.
+          <b><span style="color: #e76f51">Isso transforma em cashback pra você! 🤑</span> </b><br><br>
+        </h3>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+<ion-footer class="chat-footer">
+  <ion-toolbar class="footer-toolbar">
+    <ion-item lines="none" class="input-item">
+      <ion-input [(ngModel)]="mensagem" placeholder="Digite sua mensagem..."></ion-input>
+      <ion-button (click)="onEnvioChat()" fill="clear">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

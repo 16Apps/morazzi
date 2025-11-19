@@ -1,0 +1,93 @@
+﻿<ion-header class="ion-no-border parceiro-header">
+  <ion-toolbar class="topbar">
+    <ion-title class="brand" (click)="onSair()">
+      <img src="../../assets/image/logo.fw.png" alt="Morazzi" />
+    </ion-title>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button fill="clear" aria-label="Abrir menu">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+
+  <ion-toolbar class="userdata">
+    <div class="user-header">
+      <div class="user-info">
+        <h2>{{ _regParceiro?._razao_social || 'Carregando...' }}</h2>
+        <p>
+          {{ _regParceiro ? (_regParceiro.endereco.cidade + '/' + _regParceiro.endereco.estado) : 'Carregando...' }}
+        </p>
+      </div>
+      <ion-avatar class="user-avatar">
+        <img [src]="_regParceiro?._logo || 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg'"
+          alt="Foto do usuário" />
+      </ion-avatar>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: #672438;  margin-top: -15px; height: 33px;  ">
+    <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #F5F5F5;  ">
+
+  <div class="titulo-indicadores">
+    <span>Painel Financeiro</span>
+    <ion-icon [name]="showValues ? 'eye-outline' : 'eye-off-outline'" (click)="toggleValues()">
+    </ion-icon>
+  </div>
+
+  <ion-row class="dashboard-row">
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Última venda</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? _regVendas.length > 0 ? onFormataData(_regVendas[0].editado_em) : '😒' : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Este mês</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoMes.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Acumulado</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoGeral.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '----' }}
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+  <div style="text-align: center; margin-top: 10px;">
+    <img src="../../assets/image/banner_parceiro.fw.png" alt="CheckKm" style="width: 100%;">
+  </div>
+
+  <div class="morazzi-info-card">
+    <ion-icon name="happy-outline"></ion-icon>
+    <span>
+      <strong>Já somos uma rede</strong> com mais de <strong style="color: #ffba08;">50 parceiros</strong>.
+      <span style="opacity: 0.6;">Clique aqui</span>
+    </span>
+  </div>
+
+</ion-content>

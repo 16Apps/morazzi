@@ -41,7 +41,7 @@ export class Tab4Page {
     ],
   };
 
-  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
+readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as unknown as HTMLIonInputElement).getInputElement();
 
   _regCliente: any = undefined;
   _regSegmentos: any = [];
@@ -165,6 +165,14 @@ export class Tab4Page {
         this._regCliente.segmentos.filter((s: any) => s._id !== id);
     }
   }
+
+  async onSair() {
+    this.uteisService.limparBase('cliente_')
+    this.uteisService.limparBase('parceiro_')
+    this.uteisService.limparBase('vendas_')
+    this.navCtrl.navigateRoot('login');
+  }
+
 
 
 

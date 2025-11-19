@@ -19,7 +19,7 @@
     <ion-row class="align-center-space-between">
       <ion-col size="1"></ion-col>
       <ion-col size="10">
-        <ion-button (click)="onNovaConta()" fill="solid" size="small" expand="block" mode="ios"  style=" 
+        <ion-button (click)="onNovaConta('nova')" fill="solid" size="small" expand="block" mode="ios" style=" 
       --background: #DFDFD0;
       --color: #333;
       --border-radius: 20px;
@@ -31,8 +31,8 @@
       width: 100% !important;
       margin-top: -15px;
     ">
-    <!-- <ion-icon slot="start" name="add-circle-outline"></ion-icon> -->
-          Sou novo aqui! 😊 
+          <!-- <ion-icon slot="start" name="add-circle-outline"></ion-icon> -->
+          Sou novo aqui! 😊
         </ion-button>
 
       </ion-col>
@@ -40,11 +40,36 @@
     </ion-row>
   </ion-grid>
 
-    <ion-grid>
+  <ion-grid>
     <ion-row class="align-center-space-between">
       <ion-col size="1"></ion-col>
       <ion-col size="10">
-        <ion-button fill="solid" size="small" expand="block" mode="ios" style=" 
+        <ion-button (click)="onNovaConta('login')" fill="solid" size="small" expand="block" mode="ios" style=" 
+      --background: #ce4257;
+      --color: #ffffff;
+      --border-radius: 20px;
+      height: 40px;
+      min-height: 40px;
+      padding: 10px;
+      font-size: 12px;
+      font-family: Muli;
+      width: 100% !important;
+      margin-top: -15px;
+    ">
+          <!-- <ion-icon slot="start" name="add-circle-outline"></ion-icon> -->
+          Já tenho uma conta 😎
+        </ion-button>
+
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button (click)="onAcessoParceiro()" fill="solid" size="small" expand="block" mode="ios" style=" 
       --background: transparent;
       --color: #ffffff;
       --border-radius: 20px;

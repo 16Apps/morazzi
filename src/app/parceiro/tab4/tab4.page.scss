@@ -1,0 +1,153 @@
+ion-toolbar .car-toolbar {
+  display: flex;
+  align-items: center;
+
+  ion-thumbnail img {
+    width: 48px;
+    border-radius: 8px;
+  }
+
+  ion-label h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  ion-label p {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+}
+
+ion-content {
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+
+  --border-radius: 20px 20px 0px 0px;
+
+  >h1 {
+    color: #3d3d3d;
+    font-size: 11pt;
+    font-weight: 700;
+  }
+}
+
+.align-center-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -30px;
+}
+
+.greeting p,
+.greeting h2,
+.recent-km p,
+.update-km {
+  font-family: 'MuliBold', sans-serif;
+}
+
+.revisao-km {
+  font-family: 'MuliBold', sans-serif;
+}
+
+.greeting p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.greeting h2 {
+  font-family: 'MuliBold' !important;
+  margin: 0;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.formulario {
+  padding: 0px;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #672438;
+  /* bordô do mockup */
+  padding: 15px 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: #fff;
+  font-family: 'MuliBold'
+}
+
+.user-info h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-company {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.user-points {
+  margin: 5px 0 0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.user-avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.user-avatar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.user-avatar .avatar-btn {
+  position: absolute;
+  bottom: -3px;
+  right: -12px;
+  --background: #ffffffcc;
+  --color: #672438;
+  width: 31px;
+  height: 31px;
+  padding: 3px;
+}
+
+ion-item {
+  --background: #F5F5F5;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+ion-label {
+  color: #852E48 !important;
+  font-family: 'MuliBold' !important;
+  opacity: 0.8;
+}
+
+ion-input {
+  color: 333;
+  font-family: 'MuliBold';
+}
+
+ion-checkbox {
+  --size: 22px;
+  --checkbox-background-checked: #820263;
+  font-family: 'Muli';
+  font-size: 15px;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 6px;
+  border: 1px solid #d90368;
+}

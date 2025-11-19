@@ -1,0 +1,135 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #672438; ">
+    <ion-buttons slot="start">
+      <ion-button (click)="fecharModal()" style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="chevron-back-outline" style="font-size: 18px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title style="text-align: right;">
+      <img src="../../assets/image/logo.fw.png" alt="CheckKm" style="height: 40px; margin-top: 5px;">
+    </ion-title>
+  </ion-toolbar>
+
+  <div style="background-color: #672438; width: 100%;">
+    <div style="height: 30px; background-color: #ffffff; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;"></div>
+  </div>
+
+</ion-header>
+
+<ion-content style="--background: #ffffff;">
+
+  <div *ngIf="_etapa=='cnpj'">
+    <h2
+      style=" font-size: 20px; font-weight: bold; margin: 16px; font-family: MuliBold; text-align: center; letter-spacing: -1px;">
+      Olá Parceiro!
+    </h2>
+    <p
+      style=" font-size: 11px; font-weight: bold; margin: 16px; font-family: Muli; text-align: center; margin-top: -10px; opacity: 0.7;">
+      Qual é o seu CNPJ cadastrado com a gente?
+    </p>
+
+    <div class="phone-wrapper">
+
+      <div class="phone-box">
+        <ion-input [(ngModel)]="_cnpj" type="tel" maxlength="18" inputmode="tel" placeholder="00.000.000/0000-00"
+          [maskito]="cnpjMask" [maskitoElement]="maskPredicate"></ion-input>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="_etapa=='chave'">
+
+    <h2
+      style=" font-size: 20px; font-weight: bold; margin: 16px; font-family: MuliBold; text-align: center; letter-spacing: -1px;">
+      Digite o código que <br>enviamos
+    </h2>
+    <p
+      style=" font-size: 11px; font-weight: bold; margin: 16px; font-family: Muli; text-align: center; margin-top: -10px; opacity: 0.7;">
+      Código enviado para +55 {{ _regParceiro.celular }}
+    </p>
+
+
+    <ion-grid>
+      <ion-row class="align-center-space-between">
+        <ion-col size="2"></ion-col>
+        <ion-col size="8">
+          <div class="otp-container">
+            <input [(ngModel)]="_chave1" maxlength="1" type="tel" #otpInput (input)="moveFocus($event, 0)"
+              (keydown)="handleBackspace($event, 0)">
+            <input [(ngModel)]="_chave2" maxlength="1" type="tel" #otpInput (input)="moveFocus($event, 1)"
+              (keydown)="handleBackspace($event, 1)">
+            <input [(ngModel)]="_chave3" maxlength="1" type="tel" #otpInput (input)="moveFocus($event, 2)"
+              (keydown)="handleBackspace($event, 2)">
+            <input [(ngModel)]="_chave4" maxlength="1" type="tel" #otpInput (input)="moveFocus($event, 3)"
+              (keydown)="handleBackspace($event, 3)">
+          </div>
+        </ion-col>
+        <ion-col size="2"></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p
+      style=" font-size: 11px; font-weight: bold; margin: 16px; font-family: Muli; text-align: center; margin-top: 10px; opacity: 0.7; color: #457b9d">
+      {{ timerText }}
+    </p>
+  </div>
+
+
+  <ion-modal #modalContaCadastrada trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
+    [backdropDismiss]="false" mode="ios">
+    <ng-template>
+      <div class="modal-content">
+        <!-- <div class="progress-bar"></div> -->
+        <div class="clock-icon">
+          <img src="../../assets/image/clock.gif" style="height: 50px; border-radius: 50%;">
+        </div>
+        <h3 *ngIf="_etapa=='cnpj'">Estamos validando seu CNPJ</h3>
+        <h3 *ngIf="_etapa=='chave'">Estamos validando sua conta</h3>
+        <p>Aguarde...<br>um minutinho.</p>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+<ion-footer class="ion-no-border" style="text-align:right ;  ">
+  <ion-toolbar style="padding-right: 10px; --background: #ffffff; height: 110px; padding-top: 3px;">
+
+    <ion-grid>
+      <ion-row class="align-center-space-between">
+        <ion-col size="1"></ion-col>
+        <ion-col size="10">
+
+
+          <ion-button [disabled]="!_cnpj" (click)="onMudaEtapa()" fill="solid" size="small" expand="block" mode="ios"
+            style=" 
+            --background: #3B426A;
+            --color: white;
+            --border-radius: 20px;
+            height: 40px;
+            min-height: 40px;
+            padding: 10px;
+            font-size: 12px;
+            font-family: MuliBold;
+            width: 100% !important;
+            margin-top: -10px; ">
+            {{
+            _etapa=='cnpj' ? 'Próximo' : 'Validar'}}
+          </ion-button>
+
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p
+      style=" font-size: 9px; font-weight: bold; margin: 16px; font-family: Muli; text-align: center;  opacity: 0.5; margin-top: 10px;">
+      A Morazzi conectando grandes Parceiros, à grandes Clientes!
+    </p>
+
+
+  </ion-toolbar>
+</ion-footer>

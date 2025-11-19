@@ -22,9 +22,9 @@ export class AppComponent {
 
         } else {
 
-          this.uteisService.buscarRegistros('oficina_').then((res: any) => {
+          this.uteisService.buscarRegistros('parceiro_').then((res: any) => {
             if (res.length > 0) {
-              this.navCtrl.navigateRoot('oficina/servicos');
+              this.navCtrl.navigateRoot('/parceiro/tabs/tab1');
             }
           })
         }

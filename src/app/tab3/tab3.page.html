@@ -6,7 +6,7 @@
     </ion-title>
 
     <ion-buttons slot="end" style="margin-top: -10px;">
-      <ion-button  style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+      <ion-button style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
         <ion-icon slot="icon-only" name="headset-outline" style="font-size: 26px;"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -34,27 +34,91 @@
     </ion-row>
   </ion-grid>
 
-  <div style="min-height: auto; text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="../../assets/image/mochila_vazia.fw.png" style="width: 90%;">
+    <ion-row class="dashboard-row">
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Este mês</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoMes.toLocaleString("pt-BR", { minimumFractionDigits:0, maximumFractionDigits: 0 }) : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Acumulado</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoGeral.toLocaleString("pt-BR", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Transações</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? _regVendas.length : '----' }}
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-list [inset]="true" mode="ios" style="padding: 0px !important;">
+    <ion-item *ngFor="let item of _regVendas"  class="venda-item" [button]="true"
+      detail="true" mode="ios">
+      <ion-icon slot="start" name="list-circle" [ngClass]="{
+    'status-fechado': item.status_negocio === 'fechado',
+    'status-andamento': item.status_negocio === 'em_andamento',
+    'status-cancelado': item.status_negocio === 'cancelado'
+  }">
+      </ion-icon>
+      <ion-label class="muli">
+        <strong class="muli-bold">{{ item.id_parceiro.razao_social_ }}</strong><br />
+        <ion-text>Doc: {{ item.doc_venda }}</ion-text>
+        <div class="venda-date">
+          <ion-icon color="medium" name="calendar-outline"></ion-icon>
+          <span>{{ onFormataData(item.editado_em) }}</span>
+        </div>
+      </ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-note class="valor-total muli-bold">
+          {{ item.valor_total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+        </ion-note>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="_regVendas.length == 0">
+
+    <div style="min-height: auto; text-align: center; margin-top: 20px; margin-bottom: 20px;">
+      <img src="../../assets/image/mochila_vazia.fw.png" style="width: 90%;">
+    </div>
+
+    <ion-grid style="margin-top: 30px;">
+      <ion-row class="align-center-space-between">
+        <ion-col size="auto">
+          <div class="greeting" style="text-align: center;">
+            <h2 style="color: #c9184a;">Ainda faltou alguma coisa?</h2>
+            <p style="margin-top: 10px; opacity: 0.6;">Chame nossa IA e vamos levantar essa obra juntos.</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
-  <ion-grid style="margin-top: 30px;">
-    <ion-row class="align-center-space-between">
-      <ion-col size="auto">
-        <div class="greeting" style="text-align: center;">
-          <h2 style="color: #c9184a;">Ainda faltou alguma coisa?</h2>
-          <p style="margin-top: 10px; opacity: 0.6;">Chame nossa IA e vamos levantar essa obra juntos.</p>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-    <ion-grid>
+  <ion-grid>
     <ion-row class="align-center-space-between">
       <ion-col size="1"></ion-col>
       <ion-col size="10">
         <ion-button fill="solid" size="small" expand="block" mode="ios" style=" 
-      --background: #2d232e;
+      --background: #6d6875;
       --color: white;
       --border-radius: 20px;
       height: 40px;

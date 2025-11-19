@@ -349,6 +349,14 @@ export class UteisService {
     (typeof splits[1] === "undefined") ? i.target.value = p_parte : i.target.value = p_parte + separador_decimal + splits[1];
   };
 
+  desformataMoedaBR(valor: string): number {
+    if (!valor) return 0;
+    valor = valor.replace(/\./g, "");   // remove milhares
+    valor = valor.replace(",", ".");    // vírgula vira ponto
+    return parseFloat(valor);
+  }
+
+
   moedaBR2(event: any) {
     const input = event.target as HTMLInputElement;
     let valor = input.value;

@@ -1,5 +1,5 @@
 
-import { Component, QueryList, ViewChildren, ElementRef } from '@angular/core';
+import { Component, QueryList, ViewChildren, ElementRef, Input } from '@angular/core';
 import { Platform, NavController, ModalController } from '@ionic/angular';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 import { ApiService } from '../services/api.service';
@@ -7,11 +7,9 @@ import { UteisService } from '../services/uteis.service';
 import { ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 
-import { Tab1Page } from '../tab1/tab1.page';
-import { TabsPage } from '../tabs/tabs.page';
-
 import * as moment from 'moment';
 moment.locale('pt-br');
+
 
 @Component({
   selector: 'app-novaconta',
@@ -22,8 +20,12 @@ export class NovacontaPage {
 
   @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
   @ViewChild('modalKm') modal!: IonModal;
-  @ViewChild('modalConsultaPlaca') modalPlaca!: IonModal;
+  @ViewChild('modalContaCadastrada') modalContaCadastrada!: IonModal;
   @ViewChild('modalCadastro') modalCadastro!: IonModal;
+
+  @Input() returnPage!: string;
+  @Input() acao!: string;
+
 
   _etapa = 'celular'
 
@@ -109,8 +111,9 @@ export class NovacontaPage {
     ],
   };
 
-  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as unknown as HTMLIonInputElement).getInputElement();
 
+  _regCliente: any = undefined
   _editCliente: any = {
 
     _id: this.uteisService.autoID(),
@@ -120,6 +123,7 @@ export class NovacontaPage {
     foto: '',
     _foto: 'https://media.lordicon.com/icons/wired/lineal/44-avatar-user-in-circle.svg',
     qualificacao: 5,
+    cashback: 0,
     cpf: '',
     telefone: '',
     celular: '',
@@ -147,21 +151,30 @@ export class NovacontaPage {
     private uteisService: UteisService,
   ) {
     this.platform.ready().then(async () => {
-
       // this.uteisService.buscarRegistros('cliente_').then((data: any) => {
       //   alert(JSON.stringify(data))
       // })
-
-
     });
   }
 
   ngOnInit() {
   }
 
-  onMudaEtapa() {
+  async onMudaEtapa() {
 
     if (this._etapa == 'celular') {
+
+
+      // Verifica se celular já encontra-se cadastrado
+      let _url = '/_bd?c=clientes'
+      _url += "&celular=" + this._editCliente.celular
+
+      await this.apiService.getServer(_url, 2000)
+        .then(async (data: any) => {
+          if (data.length > 0) {
+            this._regCliente = data[0]
+          };
+        });
 
       this.onEnviaChave();
       this._etapa = 'chave';
@@ -174,8 +187,41 @@ export class NovacontaPage {
         return;
       };
 
-      this._etapa = 'nome';
-      clearInterval(this.timer);
+      if (this._regCliente != undefined) {
+        this.modalContaCadastrada.present();
+
+        this.uteisService.limparBase('parceiro_')
+        this.uteisService.salvarBase('cliente_', [this._regCliente])
+
+        setTimeout(() => {
+          this.modalContaCadastrada.dismiss();
+          this.uteisService.onToast('Suas experiências começam agora!', 2000, 'bottom', 'normal');
+
+          setTimeout(() => {
+            this.navCtrl.navigateRoot('tabs/tab1');
+            setTimeout(async () => {
+              await this.modalController.dismiss();
+            }, 200);
+          }, 1200);
+        }, 4000);
+
+
+      } else {
+
+        if (this.acao == 'login') {
+          this.uteisService.onToast('Não localizamos o seu cadastro.', 2000, 'bottom', 'error');
+          setTimeout(() => {
+            this.uteisService.onToast('Verfiique o celular informado.', 2000, 'bottom', 'normal');
+            this._etapa = 'celular';
+          }, 2010);
+          return;
+        } else {
+          this._etapa = 'nome';
+          clearInterval(this.timer);
+        }
+      };
+
+
 
     } else if (this._etapa == 'nome') {
 

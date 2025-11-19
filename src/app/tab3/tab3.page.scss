@@ -99,3 +99,75 @@ ion-content {
   margin-top: -3px;
   /* linha cinza claro */
 }
+
+.dashboard-row {
+  margin-top: 0px;
+}
+
+.dash-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #7a7a7a;
+  font-family: 'Muli';
+}
+
+.dash-value {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: bolder;
+  color: #4b1c24;
+  font-family: 'MuliBold';
+}
+
+/* LISTA MODERNA */
+.venda-item {
+  --background: #ffffff;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  --border-color: #f2f2f2;
+
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0px 3px 9px rgba(0,0,0,0.04);
+}
+
+.venda-item ion-icon[slot="start"] {
+  font-size: 32px;
+  opacity: 0.85;
+}
+
+.venda-item ion-label strong {
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.venda-item ion-text {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.venda-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* VALOR TOTAL */
+.valor-total {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+}

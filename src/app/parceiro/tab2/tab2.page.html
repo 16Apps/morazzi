@@ -1,0 +1,104 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #672438; ">
+
+    <ion-title
+      style="text-align: left; font-family: 'MuliBold' !important; color: #F5F5F5; font-size: 17px; padding-bottom: 20px; padding-top: 10px;">
+      <p style="height: 30px;">Leads BotMorazzi</p>
+    </ion-title>
+
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: #672438;  margin-top: -25px; height: 33px;  ">
+    <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #F5F5F5; padding: 0px !important ">
+
+
+  <ion-row class="dashboard-row">
+    <ion-col size="6">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Este mês</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoMes : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="6">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Acumulado</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoGeral : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+
+  <ion-list mode="ios" style="padding: 0px !important; margin-top: 20px;">
+    <ion-item *ngFor="let item of _regLeads" class="venda-item" mode="ios">
+      <ion-label class="muli">
+        <strong class="muli-bold">{{ item.id_cliente.nome }}</strong><br />
+        <div class="venda-date">
+          <ion-icon color="medium" name="calendar-outline"></ion-icon>
+          <span> {{ onFormataData(item.editado_em) }} </span>
+        </div>
+      </ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-note >
+          <ion-badge color="tertiary" style="font-size: 10px; font-family: Muli; padding: 3px; opacity: 0.7;">
+            &nbsp;&nbsp;{{ onFormataAcao(item.acao) }}&nbsp;&nbsp;
+          </ion-badge>
+        </ion-note>
+      </div>
+    </ion-item>
+  </ion-list>
+
+
+  <div *ngIf="_regLeads.length == 0">
+
+    <div style="min-height: auto; text-align: center; margin-top: 40px; margin-bottom: 20px;">
+      <img src="../../assets/image/sem_leads.fw.png" style="width: 70%;">
+    </div>
+
+    <ion-grid style="margin-top: 10px;">
+      <ion-row class="align-center-space-between">
+        <ion-col size="auto">
+          <div class="greeting" style="text-align: center;">
+            <h2 style="color: #672438;">Ainda sem Leads?</h2>
+            <p style="margin-top: 0px; opacity: 0.6;">Estamos prontos para ajudar você virar o jogo!</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button class="support-btn" fill="solid" size="small" expand="block" mode="ios"
+          style="--support-btn-bg: #6c757d; opacity: 0.7;">
+          Suporte Morazzi
+        </ion-button>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  
+
+</ion-content>

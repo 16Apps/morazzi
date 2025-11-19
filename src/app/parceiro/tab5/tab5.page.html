@@ -1,0 +1,207 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #672438; ">
+
+    <ion-title
+      style="text-align: left; font-family: 'MuliBold' !important; color: #F5F5F5; font-size: 17px; padding-bottom: 20px; padding-top: 10px;">
+      <p style="height: 30px;">Minhas Vendas</p>
+    </ion-title>
+
+    <ion-buttons slot="end" style="margin-top: -10px;">
+      <ion-button (click)="onEditarVenda(undefined)" style="--color: #ffffff; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="bag-add-outline" style="font-size: 26px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: #672438;  margin-top: -25px; height: 33px;  ">
+    <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #F5F5F5; padding: 0px !important ">
+
+
+  <ion-row class="dashboard-row">
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Este mês</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoMes.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Acumulado</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? acumuladoGeral.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '----' }}
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="4">
+      <div class="dash-card">
+        <div class="dash-header">
+          <span>Total de Vendas</span>
+        </div>
+        <div class="dash-value">
+          {{ showValues ? _regVendas.length : '----' }}
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-list [inset]="true" mode="ios" style="padding: 0px !important;">
+    <ion-item *ngFor="let item of _regVendas" (click)="onEditarVenda(item)" class="venda-item" [button]="true"
+      detail="true" mode="ios">
+      <ion-icon slot="start" name="list-circle" [ngClass]="{
+    'status-fechado': item.status_negocio === 'fechado',
+    'status-andamento': item.status_negocio === 'em_andamento',
+    'status-cancelado': item.status_negocio === 'cancelado'
+  }">
+      </ion-icon>
+      <ion-label class="muli">
+        <strong class="muli-bold">{{ item.id_cliente.nome }}</strong><br />
+        <ion-text>Doc: {{ item.doc_venda }}</ion-text>
+        <div class="venda-date">
+          <ion-icon color="medium" name="calendar-outline"></ion-icon>
+          <span>{{ onFormataData(item.editado_em) }}</span>
+        </div>
+      </ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-note class="valor-total muli-bold">
+          {{ item.valor_total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+        </ion-note>
+      </div>
+    </ion-item>
+  </ion-list>
+
+
+  <div *ngIf="_regVendas.length == 0">
+    <ion-grid>
+      <ion-row class="align-center-space-between">
+        <ion-col size="1"></ion-col>
+        <ion-col size="10">
+          <ion-button (click)="onEditarVenda(undefined)" class="support-btn" fill="solid" size="small" expand="block"
+            mode="ios" style="--support-btn-bg: #3a7ca5;">
+            Registrar Venda
+          </ion-button>
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div style="min-height: auto; text-align: center; margin-top: 40px; margin-bottom: 20px;">
+      <img src="../../assets/image/sem_vendas.fw.png" style="width: 70%;">
+    </div>
+
+    <ion-grid style="margin-top: 10px;">
+      <ion-row class="align-center-space-between">
+        <ion-col size="auto">
+          <div class="greeting" style="text-align: center;">
+            <h2 style="color: #672438;">Ainda não houve vendas?</h2>
+            <p style="margin-top: 0px; opacity: 0.6;">Estamos prontos para ajudar você a começar.</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <ion-grid>
+    <ion-row class="align-center-space-between">
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button class="support-btn" fill="solid" size="small" expand="block" mode="ios"
+          style="--support-btn-bg: #6c757d; opacity: 0.7;">
+          Suporte Morazzi
+        </ion-button>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-modal #modalRegistroVenda trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
+    [backdropDismiss]="false" mode="ios">
+    <ng-template>
+      <div class="modal-content">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+          <h2>Registro de Venda</h2>
+          <ion-icon name="close-outline" (click)="  onFecharVenda()"></ion-icon>
+        </div>
+
+        <ion-item class="input-item">
+          <ion-icon name="person-outline" slot="start" style="opacity: 0.3; font-size: 14px;"></ion-icon>
+
+          <ion-input [(ngModel)]="_editVenda._busca_cpf" placeholder="CPF do Cliente" type="tel" inputmode="tel"
+            [maskito]="cpfMask" [maskitoElement]="maskPredicate">
+          </ion-input>
+
+          <ion-button (click)="onBuscaCliente()" fill="clear" slot="end" style="margin-right: -5px;">
+            <ion-icon name="search-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <!-- CLIENTE -->
+        <ion-item *ngIf="_editVenda.id_cliente" class="input-item">
+          <ion-icon name="person-outline" slot="start" style="opacity: 0.3; font-size: 14px;"></ion-icon>
+          <ion-input [(ngModel)]="_editVenda.id_cliente.nome" placeholder="Cliente" disabled>
+          </ion-input>
+        </ion-item>
+
+        <!-- VALOR TOTAL -->
+        <ion-item *ngIf="_editVenda.id_cliente" class="input-item">
+          <ion-icon name="cash-outline" slot="start" style="opacity: 0.3; font-size: 14px;"></ion-icon>
+          <input [(ngModel)]="_editVenda.valor_total" placeholder="Valor total" type="tel"
+            (keyup)="formatarMoedaBR($event)">
+
+        </ion-item>
+
+        <!-- DOCUMENTO DA VENDA -->
+        <ion-item *ngIf="_editVenda.id_cliente" class="input-item">
+          <ion-icon name="document-text-outline" slot="start" style="opacity: 0.3; font-size: 14px;"></ion-icon>
+          <ion-input [(ngModel)]="_editVenda.doc_venda" placeholder="Doc. da venda (opcional)">
+          </ion-input>
+        </ion-item>
+
+        <!-- DETALHES -->
+        <ion-item *ngIf="_editVenda.id_cliente" class="input-item textarea">
+          <ion-icon name="chatbox-ellipses-outline" slot="start" style="opacity: 0.3; font-size: 14px;"></ion-icon>
+          <ion-textarea [(ngModel)]="_editVenda.detalhes" placeholder="Detalhes (opcional)" autoGrow="true"
+            style="font-family: 'MuliBold'; font-size: 13px;">
+          </ion-textarea>
+        </ion-item>
+
+        <!-- BOTÃO -->
+        <ion-grid>
+          <ion-row class="align-center-space-between">
+            <ion-col size="1"></ion-col>
+            <ion-col size="10">
+              <ion-button (click)="onRegistraVenda()" class="support-btn" fill="solid" size="small" expand="block"
+                mode="ios" style="--support-btn-bg: #672438;">
+                Salvar Venda
+              </ion-button>
+            </ion-col>
+            <ion-col size="1"></ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

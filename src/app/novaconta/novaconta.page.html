@@ -19,6 +19,7 @@
 
 </ion-header>
 
+
 <ion-content style="--background: #ffffff;">
 
   <div *ngIf="_etapa=='celular'">
@@ -159,7 +160,7 @@
 
   </div>
 
-  <ion-modal #modalConsultaPlaca trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
+  <ion-modal #modalContaCadastrada trigger="open-custom-dialog" [initialBreakpoint]="1" [breakpoints]="[0, 1]"
     [backdropDismiss]="false" mode="ios">
     <ng-template>
       <div class="modal-content">
@@ -167,8 +168,8 @@
         <div class="clock-icon">
           <img src="../../assets/image/clock.gif" style="height: 50px; border-radius: 50%;">
         </div>
-        <h3>Estamos consultado a placa do veículo</h3>
-        <p>Rápidinho...<br>Já teremos os dados necessários.</p>
+        <h3>Estamos validando sua conta</h3>
+        <p>Aguarde...<br>um minutinho.</p>
       </div>
     </ng-template>
   </ion-modal>
