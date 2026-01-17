@@ -42,9 +42,9 @@
   </div>
 
 
-  <ion-row class="no-padding" style="--ion-grid-padding:0; --ion-grid-column-padding:0;">
+  <ion-row class="no-padding" style="--ion-grid-padding:0; --ion-grid-column-padding:0; margin: 0px !important;">
     <ion-col *ngFor="let ads of _regParceiros; let i = index" (click)="onRegistroInteracao(ads)" size="6" size-md="0">
-      <ion-card class="tour-card">
+      <ion-card class="tour-card" mode="ios">
         <img src="{{ ads._logo }}" />
         <ion-card-content>
           <p class="local" style="min-height: 30px;">{{ ads.endereco.cidade }} / {{ ads.endereco.estado }}</p>
@@ -63,21 +63,20 @@
           <p class="local"
             style="font-size: 11px; font-weight: normal; border-top: 1px solid #e0e0e0; padding-top: 10px; margin-top: 10px; ">
             <ion-button fill="solid" size="small" expand="block" mode="ios" style=" 
-              --background: #56A35A;
+              --background: #5f0f40;
               --color: white;
               --border-radius: 20px;
               height: 30px;
               min-height: 30px;
-              padding: 10px;
+              padding-top: 10px;
               font-size: 12px;
-              font-family: MuliBold;
-              width: 100% !important;
+              font-family: MuliBold;      
               margin-top: -12px;
               margin-bottom: 2px;
               padding-left: 5px;
               padding-right: 5px;">
               <ion-icon slot="start" name="chatbubbles-outline"></ion-icon>
-              Conversar
+              {{ getMensagemAleatoria() }}
             </ion-button>
           </p>
 

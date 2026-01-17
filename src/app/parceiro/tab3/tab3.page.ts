@@ -113,6 +113,7 @@ export class Tab3Page {
     })
   }
 
+  
   onEditarVenda(_reg: any) {
     if (_reg == undefined) {
 

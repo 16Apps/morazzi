@@ -157,6 +157,13 @@ ion-content {
   border-top-right-radius: 4px;
 }
 
+.partner-city {
+  font-size: 12px;
+  color: #777;
+  margin-top: -1px;
+  font-family: 'MuliBold', sans-serif;
+}
+
 .chat-footer {
   position: absolute;
   bottom: 75px; // altura da tab-bar
@@ -166,12 +173,13 @@ ion-content {
   background: #fff;
   border-top: 1px solid #ddd;
   border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 .footer-toolbar {
   --background: #fff;
   padding: 0 8px;
-  border-radius: 10px;
+  border-radius: 30px;
 
 }
 
@@ -260,8 +268,8 @@ ion-button {
 }
 
 .partner-logo {
-  width: 56px;
-  height: 56px;
+  width: 76px;
+  height: 76px;
   object-fit: cover;
   /* corta o excesso e preenche tudo */
   border-radius: 10px;
@@ -344,4 +352,183 @@ ion-modal {
   font-size: 11px;
   color: #555;
   font-family: MuliBold;
+}
+
+.contact-bubble {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 85%;
+  border-top-left-radius: 4px;
+}
+
+.contact-question {
+  margin: 0 0 12px 0;
+  font-size: 15px;
+  color: #333;
+  font-family: 'Muli', sans-serif;
+  line-height: 1.4;
+}
+
+.contact-button {
+  --background: #672438;
+  --color: #fff;
+  --border-radius: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  margin: 0;
+  font-family: 'MuliBold', sans-serif;
+  font-size: 14px;
+  text-transform: none;
+  --box-shadow: 0 2px 4px rgba(103, 36, 56, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-button:hover {
+  transform: translateY(-1px);
+  --box-shadow: 0 4px 8px rgba(103, 36, 56, 0.3);
+}
+
+.contact-button ion-icon {
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+// Modal de Contato
+.modal-contact-content {
+  padding: 30px 24px;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 24px 24px 0 0;
+  font-family: 'Muli', sans-serif;
+  min-height: 450px;
+}
+
+.modal-contact-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.contact-icon-wrapper {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-success-icon {
+  font-size: 80px;
+  color: #28a745;
+  --ionicon-stroke-width: 20px;
+  animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-contact-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1b263b;
+  margin: 0;
+  font-family: 'MuliBold', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.modal-contact-body {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.modal-contact-message {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  font-family: 'Muli', sans-serif;
+}
+
+.modal-contact-message strong {
+  color: #672438;
+  font-weight: 600;
+}
+
+.modal-contact-monitoring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+  background: #f0f7ff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin: 0;
+  font-family: 'Muli', sans-serif;
+}
+
+.monitoring-icon {
+  font-size:30px;
+  color: #672438;
+}
+
+.modal-contact-monitoring strong {
+  color: #672438;
+  font-weight: 600;
+}
+
+.modal-contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-action-button {
+  --border-radius: 14px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  margin: 0;
+  font-family: 'MuliBold', sans-serif;
+  font-size: 15px;
+  text-transform: none;
+  font-weight: 600;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.whatsapp-button {
+  --background: #25d366;
+  --color: #fff;
+}
+
+.whatsapp-button:hover {
+  --background: #20ba5a;
+  transform: translateY(-2px);
+  --box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+}
+
+.email-button {
+  --background: #672438;
+  --color: #fff;
+}
+
+.email-button:hover {
+  --background: #5a1f30;
+  transform: translateY(-2px);
+  --box-shadow: 0 6px 16px rgba(103, 36, 56, 0.3);
+}
+
+.contact-action-button ion-icon {
+  font-size: 22px;
+  margin-right: 8px;
 }

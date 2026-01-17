@@ -7,6 +7,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 
+import * as moment from 'moment';
+moment.locale('pt-br');
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -22,6 +25,7 @@ export class Tab2Page {
   _regAnunciosDestaques: any = [];
   _regAnuncios: any = [];
 
+
   _opBusca = "local"
   _listCidades: any = [];
   _listAtividades: any = [];
@@ -32,6 +36,7 @@ export class Tab2Page {
   _regAtuacoes: any = [];
   _regSegmentos: any = [];
   _regCidades: any = [];
+  _regCliente: any = undefined;
 
   _txtBusca: string = "";
 
@@ -54,6 +59,10 @@ export class Tab2Page {
           this._txtBusca = params['valor'];
         };
       });
+
+      this.uteisService.buscarRegistros('cliente_').then((data: any) => {
+        this._regCliente = data[0];
+      })
 
       // this.onCarregaAtividades();
       // this.onCarregaSustentabilidade();
@@ -158,6 +167,7 @@ export class Tab2Page {
   };
 
   onRegistroInteracao(_regParceiro: any) {
+
     this.modalInteracao.present()
     this._registroInteracaoParceiro = _regParceiro.apelido;
     this._registroInteracao = 'registrando'
@@ -171,10 +181,44 @@ export class Tab2Page {
       }, 5500);
 
     }, 3000);
+
+
+    let _id = this.uteisService.autoID()
+    let _regLead: any = {
+      _id: _id,
+      id_session: _id,
+      id_parceiro: _regParceiro._id,
+      id_cliente: this._regCliente?._id || null,
+      registro: 'parceiros_app',
+      acao: 'clique_contato',
+      registro_conversao: [],
+      criado_em: moment().format("YYYY-MM-DD HH:mm:ss"),
+      editado_em: moment().format("YYYY-MM-DD HH:mm:ss")
+    };
+
+    this.apiService.pathServer('/_bd/leads', _regLead).then((res: any) => {
+      let _regVenda = {
+        _id: this.uteisService.autoID(),
+        id_lead: _id,
+        ativo: 1,
+  
+        id_parceiro: _regParceiro._id,
+        id_cliente: this._regCliente?._id || null,
+        valor_total: 0,
+        doc_venda: '',
+        detalhes: '',
+        boleto: [],
+        status_negocio: 'em_aberto',
+        feedback: [],
+        criado_em: moment().format("YYYY-MM-DD HH:mm:ss"),
+        editado_em: moment().format("YYYY-MM-DD HH:mm:ss"),
+      };
+  
+      this.apiService.pathServer('/_bd/vendas', _regVenda).then((res: any) => {
+      })
+    });
+
   }
-
-
-
 
 
   trataAtuacao(atuacao: string) {
@@ -188,6 +232,16 @@ export class Tab2Page {
       return atuacao
     }
   };
+
+  getMensagemAleatoria(): string {
+    const mensagens = [
+      'É esse!',
+      'Chamar',
+      'Contactar',
+      'Quero!'
+    ];
+    return mensagens[Math.floor(Math.random() * mensagens.length)];
+  }
 
 
 

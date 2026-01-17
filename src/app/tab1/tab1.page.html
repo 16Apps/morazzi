@@ -47,7 +47,7 @@
   [(ngModel)]="_txtBusca"
   (keyup.enter)="onChatIA()"
   mode="ios"
-  placeholder="Buscar"
+  placeholder="Oque procura?"
   style="font-family: 'MuliBold'">
 </ion-searchbar>
 
@@ -65,7 +65,7 @@
       <ion-icon name="flash-outline"></ion-icon>
     </div>
     <div class="section-body" *ngIf="openSection === 'projeto'">
-      <div class="partner-logos">
+      <div class="partner-logos" (click)="onGoParceiro()">
         <img *ngFor="let item of _regParceiros; let i = index" src="{{ item._logo}}" [hidden]="item.atuacao!='projeto'"
           alt="{{ item.razao_social }}">
       </div>
@@ -82,7 +82,7 @@
       <ion-icon name="flash-outline"></ion-icon>
     </div>
     <div class="section-body" *ngIf="openSection === 'acabamento'">
-      <div class="partner-logos">
+      <div class="partner-logos" (click)="onGoParceiro()">
         <img *ngFor="let item of _regParceiros; let i = index" src="{{ item._logo}}"
           [hidden]="item.atuacao!='acabamento'" alt="{{ item.razao_social }}">
       </div>
@@ -100,7 +100,7 @@
       <ion-icon name="flash-outline"></ion-icon>
     </div>
     <div class="section-body" *ngIf="openSection === 'decoracao'">
-      <div class="partner-logos">
+      <div class="partner-logos" (click)="onGoParceiro()">
         <img *ngFor="let item of _regParceiros; let i = index" src="{{ item._logo}}"
           [hidden]="item.atuacao!='decoracao'" alt="{{ item.razao_social }}">
       </div>

@@ -45,8 +45,11 @@ ion-content {
 
 .tour-card {
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
   overflow: hidden;
+  background-color: #ffffff;
+  margin: 3px !important; 
+  padding: 0px !important;
 }
 
 .tour-card img {

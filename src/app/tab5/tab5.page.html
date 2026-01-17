@@ -22,35 +22,48 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="chat-content">
+<ion-content #contentArea class="chat-content">
 
   <div class="chat-container">
 
     <!-- Mensagem IA -->
-    <div *ngFor="let item of _historico; let i = index"
-      [ngClass]="{'message ai': item.role === 'assistant', 'message user': item.role === 'user'}">
+    <div *ngFor="let item of _historico" class="message" [ngClass]="item.role === 'assistant' ? 'ai' : 'user'">
 
-      <div class="bubble" *ngIf="!item.parceiro" [innerHTML]="formatMessage(item.content)"></div>
+      <div class="bubble" *ngIf="!item.parceiro && !item.contato" [innerHTML]="formatMessage(item.content)"></div>
 
-      <div class="partner-card" *ngIf="item.parceiro">
+      <div class="bubble" *ngIf="item.parceiro">
         <img *ngIf="item.logo" [src]="item.logo" alt="{{ item.nome_fantasia }}" class="partner-logo">
 
         <div class="partner-info">
           <h3 class="partner-name">{{ item.nome_fantasia || item.razao_social }}</h3>
+          <p class="partner-city" *ngIf="item.cidade || item.estado">{{ item.cidade + '/' + item.estado }}</p>
 
-          <p class="partner-phone" *ngIf="item.telefone || item.celular" (click)="onRegistroLeadBot(item.id_parceiro, 'clique_whats')" >
+          <!-- Forçar  contato pelo Parceiro -->
+          <!-- 
+          <p class="partner-phone" *ngIf="item.telefone || item.celular"
+            (click)="onRegistroLeadBot(item.id_parceiro, 'clique_whats')">
             📞 {{ item.celular || item.telefone }}
           </p>
 
           <div class="partner-links">
-            <a *ngIf="item.site" [href]="item.site" (click)="onRegistroLeadBot(item.id_parceiro, 'clique_site')" target="_blank" rel="noopener noreferrer">
+            <a *ngIf="item.site" [href]="item.site" (click)="onRegistroLeadBot(item.id_parceiro, 'clique_site')"
+              target="_blank" rel="noopener noreferrer">
               🌐 Site
             </a>
-            <a *ngIf="item.instagram" [href]="item.instagram" (click)="onRegistroLeadBot(item.id_parceiro, 'clique_social')" target="_blank" rel="noopener noreferrer">
+            <a *ngIf="item.instagram" [href]="item.instagram"
+              (click)="onRegistroLeadBot(item.id_parceiro, 'clique_social')" target="_blank" rel="noopener noreferrer">
               📸 Instagram
             </a>
-          </div>
+          </div> -->
         </div>
+      </div>
+
+      <div class="contact-bubble" *ngIf="item.contato">
+        <p class="contact-question">{{ item.content }}</p>
+        <ion-button class="contact-button" (click)="onContactarParceiro(item)" expand="block">
+          <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+          Sim, quero 😉
+        </ion-button>
       </div>
 
     </div>
@@ -85,13 +98,62 @@
     <ng-template>
       <div class="modal-content">
         <!-- <div class="progress-bar"></div> -->
-         <h3 style="font-size: 30px; font-weight: bold; letter-spacing: -2px; font-family: MuliBold; ">Fechou negócio?</h3><br>
-       
-          <img src="../../assets/image/cashback.fw.png" style="width: 90%;">
-      
+        <h3 style="font-size: 30px; font-weight: bold; letter-spacing: -2px; font-family: MuliBold; ">Fechou negócio?
+        </h3><br>
+
+        <img src="../../assets/image/cashback.fw.png" style="width: 90%;">
+
         <h3 style="padding: 20px;">Lembre-se de pedir para registrar a venda na plataforma.
           <b><span style="color: #e76f51">Isso transforma em cashback pra você! 🤑</span> </b><br><br>
         </h3>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal #modalContact [initialBreakpoint]="0.85" [breakpoints]="[0.5, 0.85, 1]" [backdropDismiss]="true" mode="ios">
+    <ng-template>
+      <div class="modal-contact-content">
+        <div class="modal-contact-header">
+          <div class="contact-icon-wrapper">
+
+            <img src="../../assets/image/check.gif" style="height: 70px; border-radius: 50%;">
+          </div>
+          <h2 class="modal-contact-title">Solicitação Enviada!</h2>
+        </div>
+
+        <div class="modal-contact-body">
+          <p class="modal-contact-message">
+            O parceiro <strong>{{ _parceiroSelecionado?.nome_fantasia || _parceiroSelecionado?.razao_social }}</strong> entrará em contato o quanto antes.
+          </p>
+
+          <p class="modal-contact-message" style="color: #00a896;">
+            <ion-icon name="eye" class="monitoring-icon" style="opacity: 0.7;"></ion-icon><br>
+            A <strong>Morazzi</strong> estará monitorando para garantir a melhor experiência.
+          </p>
+
+
+        </div>
+
+        <!-- Forças-->
+        <!-- <div class="modal-contact-actions" *ngIf="_parceiroSelecionado">
+          <ion-button 
+            *ngIf="_parceiroSelecionado.celular || _parceiroSelecionado.telefone"
+            class="contact-action-button whatsapp-button" 
+            (click)="onAbrirWhatsApp()" 
+            expand="block">
+            <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+            Contatar via WhatsApp
+          </ion-button>
+
+          <ion-button 
+            *ngIf="_parceiroSelecionado.email"
+            class="contact-action-button email-button" 
+            (click)="onAbrirEmail()" 
+            expand="block">
+            <ion-icon name="mail" slot="start"></ion-icon>
+            Contatar via Email
+          </ion-button>
+        </div> -->
       </div>
     </ng-template>
   </ion-modal>

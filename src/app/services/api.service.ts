@@ -8,10 +8,11 @@ import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 export class ApiService {
 
    //public baseUrl = 'http://192.168.0.24:3001'; 
-   //public baseUrl = 'http://192.168.0.197:3001'; 
+  //  public baseUrl = 'http://192.168.0.197:3001'; 
    public baseUrl = 'https://morazzi-8b2a10035ede.herokuapp.com';
 
   constructor(private http: HTTP) { }
+  
 
   getServer(url: string, timer: number) {
 

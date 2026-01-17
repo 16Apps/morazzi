@@ -1,5 +1,5 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar style="--background: #672438; ">
+<!-- <ion-header class="ion-no-border">
+  <ion-toolbar style=" --background: linear-gradient(135deg, #672438 0%, #8A1C35 100%);">
 
     <ion-title style="text-align: left;">
       <img src="../../assets/image/logo.fw.png" style="height: 60px; margin-left: 10px;">
@@ -13,7 +13,44 @@
 
   </ion-toolbar>
 
-  <ion-toolbar style="--background: #672438;  margin-top: -25px; height: 33px;  ">
+  <ion-toolbar style=" --background: linear-gradient(135deg, #672438 0%, #8A1C35 100%);;  margin-top: -25px; height: 33px;  ">
+    <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;">
+    </div>
+  </ion-toolbar>
+</ion-header> -->
+
+
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: linear-gradient(90deg, #672438 0%, #8A1C35 100%);;">
+
+    <ion-title style="text-align: left;">
+      <img src="../../assets/image/logo.fw.png" alt="CheckKm" style="height: 60px; margin-left: 10px;">
+    </ion-title>
+
+    <ion-buttons slot="end" style="margin-top: -10px;">
+      <ion-button (click)="onAtualizaVendas()"  style="--color: #bbb; --padding-start: 0; --padding-end: 0;">
+        <ion-icon slot="icon-only" name="refresh" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: linear-gradient(90deg, #672438 0%, #8A1C35 100%);;">
+    <div class="user-header" >
+      <div class="user-info">
+        <div class="user-name">
+          <p class="user-company"> Saldo disponível  </p>
+          <h2>{{ showValues ? acumuladoGeral.toLocaleString("pt-BR", { minimumFractionDigits:2, maximumFractionDigits: 2 }) :'----' }}</h2>
+          <p class="user-points">
+            <ion-icon name="chatbubbles-outline" style="margin-bottom: -1px;"></ion-icon>{{ showValues ? _regVendas.length : '----' }} transações
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar style="--background: linear-gradient(90deg, #672438 0%, #8A1C35 100%);;;  margin-top: -15px; height: 33px;  ">
     <div style="height: 30px; background-color: #F5F5F5; width: 100%; border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   overflow: hidden;">
@@ -23,80 +60,46 @@
 
 <ion-content style="--background: #F5F5F5;  ">
 
-  <ion-grid>
-    <ion-row class="align-center-space-between">
-      <ion-col size="auto">
-        <div class="greeting">
-          <p>Meus</p>
-          <h2><span style="color: #56619A ;">CashBacks</span></h2>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-segment  [(ngModel)]="statusBusca" color="tertiary" value="light" mode="ios" class="muli-bold">
+    <ion-segment-button value="todos" (click)="onFiltraVendas('todos')">
+      <ion-icon name="documents" style="font-size: 16px;"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="pendente" (click)="onFiltraVendas('em_aberto')">
+      <ion-icon name="time" style="font-size: 16px; color: #7b2cbf;"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="andamento" (click)="onFiltraVendas('em_andamento')">
+      <ion-icon name="document-text" style="font-size: 16px; color: #fca311;"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="fechado" (click)="onFiltraVendas('fechado')">
+      <ion-icon name="happy" style="font-size: 16px; color: #00a896;"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
 
-    <ion-row class="dashboard-row">
-    <ion-col size="4">
-      <div class="dash-card">
-        <div class="dash-header">
-          <span>Este mês</span>
-        </div>
-        <div class="dash-value">
-          {{ showValues ? acumuladoMes.toLocaleString("pt-BR", { minimumFractionDigits:0, maximumFractionDigits: 0 }) : '----' }}
-        </div>
-      </div>
-    </ion-col>
-
-    <ion-col size="4">
-      <div class="dash-card">
-        <div class="dash-header">
-          <span>Acumulado</span>
-        </div>
-        <div class="dash-value">
-          {{ showValues ? acumuladoGeral.toLocaleString("pt-BR", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : '----' }}
-        </div>
-      </div>
-    </ion-col>
-
-    <ion-col size="4">
-      <div class="dash-card">
-        <div class="dash-header">
-          <span>Transações</span>
-        </div>
-        <div class="dash-value">
-          {{ showValues ? _regVendas.length : '----' }}
-        </div>
-      </div>
-    </ion-col>
-  </ion-row>
-
-
-  <ion-list [inset]="true" mode="ios" style="padding: 0px !important;">
-    <ion-item *ngFor="let item of _regVendas"  class="venda-item" [button]="true"
-      detail="true" mode="ios">
-      <ion-icon slot="start" name="list-circle" [ngClass]="{
+  <ion-item *ngFor="let item of _regVendas" class="venda-item" [button]="true" detail="true" mode="ios" (click)="onAbrirModalVenda(item)">
+    <ion-icon slot="start" name="logo-wechat" [ngClass]="{
     'status-fechado': item.status_negocio === 'fechado',
     'status-andamento': item.status_negocio === 'em_andamento',
-    'status-cancelado': item.status_negocio === 'cancelado'
+    'status-cancelado': item.status_negocio === 'cancelado',
+    'status-aberto': item.status_negocio === 'em_aberto'
   }">
-      </ion-icon>
-      <ion-label class="muli">
-        <strong class="muli-bold">{{ item.id_parceiro.razao_social_ }}</strong><br />
-        <ion-text>Doc: {{ item.doc_venda }}</ion-text>
-        <div class="venda-date">
-          <ion-icon color="medium" name="calendar-outline"></ion-icon>
-          <span>{{ onFormataData(item.editado_em) }}</span>
-        </div>
-      </ion-label>
-      <div class="metadata-end-wrapper" slot="end">
-        <ion-note class="valor-total muli-bold">
-          {{ item.valor_total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
-        </ion-note>
+    </ion-icon>
+    <ion-label style="font-family: MuliBold;">
+      <strong>{{ item.id_parceiro.razao_social_  ? item.id_parceiro.razao_social_  : item.id_parceiro.razao_social  }}</strong><br />
+      <ion-text>Doc: {{ item.doc_venda ? item.doc_venda : 'Em Aberto' }}</ion-text>
+      <div class="venda-date">
+        <ion-icon color="medium" name="calendar-outline"></ion-icon>
+        <span>{{ onFormataData(item.editado_em) }}</span>
       </div>
-    </ion-item>
-  </ion-list>
+    </ion-label>
+    <div class="metadata-end-wrapper" slot="end">
+      <ion-note class="valor-total" style="font-family: MuliBold;">
+        {{ item.valor_total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+      </ion-note>
+    </div>
+  </ion-item>
 
-  <div *ngIf="_regVendas.length == 0">
 
+  <div *ngIf="_regVendas.length == 0 && _regVendasBase.length == 0">
     <div style="min-height: auto; text-align: center; margin-top: 20px; margin-bottom: 20px;">
       <img src="../../assets/image/mochila_vazia.fw.png" style="width: 90%;">
     </div>
@@ -113,28 +116,169 @@
     </ion-grid>
   </div>
 
-  <ion-grid>
-    <ion-row class="align-center-space-between">
-      <ion-col size="1"></ion-col>
-      <ion-col size="10">
-        <ion-button fill="solid" size="small" expand="block" mode="ios" style=" 
-      --background: #6d6875;
-      --color: white;
-      --border-radius: 20px;
-      height: 40px;
-      min-height: 40px;
-      padding: 10px;
-      font-size: 12px;
-      font-family: MuliBold;
-      width: 100% !important;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    ">
-          Suporte Morazzi
-        </ion-button>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-    </ion-row>
-  </ion-grid>
+  <div *ngIf="_regVendas.length == 0 && _regVendasBase.length > 0">
+
+    <div style="min-height: auto; text-align: center; margin-top: 20px; margin-bottom: 20px;">
+      <img src="../../assets/image/sem_venda.png" style="width: 90%;">
+    </div>
+
+    <ion-grid style="margin-top: 30px;">
+      <ion-row class="align-center-space-between">
+        <ion-col size="auto">
+          <div class="greeting" style="text-align: center;">
+            <h2 style="color: #c9184a;">Nada com esse status.</h2>
+            <p style="margin-top: 10px; opacity: 0.6;">Utilize o filtro para ver as vendas com outro status.</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div style="height: 200px"></div>
+
+  <!-- Modal Detalhe Venda -->
+  <ion-modal #modalDetalheVenda [initialBreakpoint]="0.95" [breakpoints]="[0, 0.5, 0.95, 1]" mode="ios">
+    <ng-template>
+      <div class="modal-wrapper-venda" *ngIf="_vendaSelecionada">
+        
+        <!-- Header do Modal com Degrade -->
+        <!-- <div class="modal-header-venda-gradient">
+          <div class="modal-header-content">
+            <h2>Detalhes da Venda</h2>
+            <ion-button fill="clear" (click)="onFecharModal()" class="close-button">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div> -->
+        
+
+        <div class="modal-content-venda">
+
+
+        <!-- Informações da Venda -->
+        <div class="venda-info-section">
+          <div class="info-row">
+            <span class="info-label">Parceiro:</span>
+            <span class="info-value">{{ _vendaSelecionada.id_parceiro?.razao_social || _vendaSelecionada.id_parceiro?.nome_fantasia }}</span>
+          </div>
+
+          <div class="info-row" *ngIf="_vendaSelecionada.doc_venda">
+            <span class="info-label">Documento:</span>
+            <span class="info-value">{{ _vendaSelecionada.doc_venda }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Status:</span>
+            <span class="info-value status-badge" [ngClass]="{
+              'status-fechado': _vendaSelecionada.status_negocio === 'fechado',
+              'status-andamento': _vendaSelecionada.status_negocio === 'em_andamento',
+              'status-cancelado': _vendaSelecionada.status_negocio === 'cancelado',
+              'status-aberto': _vendaSelecionada.status_negocio === 'em_aberto'
+            }">
+              {{ onFormataStatus(_vendaSelecionada.status_negocio) }}
+            </span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Valor Total:</span>
+            <span class="info-value valor-highlight">
+              R$ {{ _vendaSelecionada.valor_total.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+            </span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Data da Venda:</span>
+            <span class="info-value">{{ onFormataData(_vendaSelecionada.criado_em) }}</span>
+          </div>
+
+          <div class="info-row" *ngIf="_vendaSelecionada.editado_em !== _vendaSelecionada.criado_em">
+            <span class="info-label">Última Atualização:</span>
+            <span class="info-value">{{ onFormataData(_vendaSelecionada.editado_em) }}</span>
+          </div>
+
+          <div class="info-row" *ngIf="_vendaSelecionada.detalhes">
+            <span class="info-label">Detalhes:</span>
+            <span class="info-value">{{ _vendaSelecionada.detalhes }}</span>
+          </div>
+        </div>
+
+        <!-- Informações do Parceiro -->
+        <div class="parceiro-info-section" *ngIf="_vendaSelecionada.id_parceiro">
+          <h3>Informações do Parceiro</h3>
+          
+          <div class="info-row" *ngIf="_vendaSelecionada.id_parceiro.endereco">
+            <span class="info-label">Endereço:</span>
+            <span class="info-value">
+              {{ _vendaSelecionada.id_parceiro.endereco.logradouro }}, 
+              {{ _vendaSelecionada.id_parceiro.endereco.numero }}
+              {{ _vendaSelecionada.id_parceiro.endereco.complemento ? '- ' + _vendaSelecionada.id_parceiro.endereco.complemento : '' }}<br>
+              {{ _vendaSelecionada.id_parceiro.endereco.bairro }}, {{ _vendaSelecionada.id_parceiro.endereco.cidade }} - {{ _vendaSelecionada.id_parceiro.endereco.estado }}<br>
+              CEP: {{ _vendaSelecionada.id_parceiro.endereco.cep }}
+            </span>
+          </div>
+
+          <div class="info-row" *ngIf="_vendaSelecionada.id_parceiro.telefone || _vendaSelecionada.id_parceiro.celular">
+            <span class="info-label">Contato:</span>
+            <span class="info-value">
+              {{ _vendaSelecionada.id_parceiro.telefone || '' }}
+              {{ _vendaSelecionada.id_parceiro.telefone && _vendaSelecionada.id_parceiro.celular ? ' / ' : '' }}
+              {{ _vendaSelecionada.id_parceiro.celular || '' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Seção de Feedback -->
+        <div class="feedback-section">
+          <h3>Avaliar Compra</h3>
+          
+          <!-- Rating com Estrelas -->
+          <div class="star-rating-container">
+            <span class="rating-label">Avaliação:</span>
+            <div class="star-rating">
+              <ion-button fill="clear" *ngFor="let star of starsArray" 
+                (click)="onSetRating(star)" 
+                style="--padding-start: 4px; --padding-end: 4px; margin: 0;">
+                <ion-icon [name]="star <= feedbackRating ? 'star' : 'star-outline'" 
+                  [style.color]="star <= feedbackRating ? '#fbc02d' : '#ccc'"
+                  style="font-size: 32px;"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+
+          <!-- Textarea para Feedback -->
+          <div class="feedback-text-container">
+            <ion-textarea 
+              [(ngModel)]="feedbackTexto"
+              placeholder="Compartilhe sua experiência com esta compra (opcional)"
+              rows="4"
+              style="--padding-start: 12px; --padding-end: 12px;"
+              class="feedback-textarea">
+            </ion-textarea>
+          </div>
+
+          <!-- Botão Salvar Feedback -->
+          <ion-button 
+            (click)="onSalvarFeedback()"
+            fill="solid" 
+            expand="block" 
+            mode="ios" 
+            style="
+              --background: #28a745;
+              --color: white;
+              --border-radius: 12px;
+              height: 48px;
+              margin-top: 20px;
+              font-family: MuliBold;
+              font-size: 15px;
+            ">
+            <ion-icon name="checkmark-circle-outline" slot="start" style="font-size: 20px;"></ion-icon>
+            Salvar Avaliação
+          </ion-button>
+        </div>
+
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>

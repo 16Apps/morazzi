@@ -137,6 +137,10 @@ export class Tab1Page {
 
   };
 
+  async onGoParceiro() {
+    await this.router.navigate(['/tabs/tab2', { busca: this._txtBusca }]);
+  };
+
   async onChatIA() {
     await this.router.navigate(['/tabs/tab5', { busca: this._txtBusca }]);
     this._txtBusca = '';

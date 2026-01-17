@@ -108,7 +108,7 @@ ion-content {
   background: #ffffff;
   border-radius: 14px;
   padding: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0e0;
 }
 
 .dash-header {
@@ -137,13 +137,31 @@ ion-content {
   --border-color: #f2f2f2;
 
   border-radius: 14px;
-  margin-bottom: 12px;
-  box-shadow: 0px 3px 9px rgba(0,0,0,0.04);
+  margin-top: 12px;
+  border: 1px solid #e0e0e0;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .venda-item ion-icon[slot="start"] {
   font-size: 32px;
   opacity: 0.85;
+}
+
+.status-fechado {
+  color: #28a745;
+}
+
+.status-andamento {
+  color: #ffc107;
+}
+
+.status-cancelado {
+  color: #dc3545;
+}
+
+.status-aberto {
+  color: #7b2cbf;
 }
 
 .venda-item ion-label strong {
@@ -170,4 +188,336 @@ ion-content {
   font-size: 14px;
   font-weight: 700;
   color: #222;
+}
+
+/* MODAL ESTILOS */
+.modal-wrapper-venda {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #F5F5F5;
+}
+
+.modal-header-venda-gradient {
+  background: #ad2831;
+  padding: 16px 20px;
+  position: relative;
+  
+  .modal-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      font-family: 'MuliBold', sans-serif;
+    }
+
+    .close-button {
+      --color: #ffffff;
+      --padding-start: 0;
+      --padding-end: 0;
+      opacity: 0.95;
+      min-width: 32px;
+      min-height: 32px;
+      
+      ion-icon {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.modal-content-venda {
+  flex: 1;
+  padding: 24px 20px 30px 20px;
+  font-family: 'MuliBold', sans-serif;
+  background: #F5F5F5;
+  color: #1b263b;
+  overflow-y: auto;
+}
+
+/* CashBack Summary Card */
+.cashback-summary-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  .cashback-balance {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+
+    .balance-label {
+      font-size: 13px;
+      color: #7a7a7a;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-family: 'Muli', sans-serif;
+    }
+
+    .balance-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #1b263b;
+      font-family: 'MuliBold', sans-serif;
+      letter-spacing: -1px;
+    }
+  }
+
+  .cashback-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 16px;
+
+    .stat-item {
+      flex: 1;
+      text-align: left;
+
+      .stat-label {
+        font-size: 11px;
+        color: #7a7a7a;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-family: 'Muli', sans-serif;
+        display: flex;
+        align-items: center;
+
+        ion-icon {
+          opacity: 0.7;
+        }
+      }
+
+      .stat-value {
+        font-size: 18px;
+        font-weight: bold;
+        color: #1b263b;
+        font-family: 'MuliBold', sans-serif;
+      }
+    }
+  }
+
+  .cashback-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    .action-button {
+      flex: 1;
+      --color: #672438;
+      --padding-start: 4px;
+      --padding-end: 4px;
+      font-size: 11px;
+      font-family: 'MuliBold', sans-serif;
+      text-transform: none;
+      height: 36px;
+      margin: 0;
+      --border-radius: 8px;
+      background: rgba(103, 36, 56, 0.05);
+      --ripple-color: rgba(103, 36, 56, 0.1);
+
+      ion-icon {
+        font-size: 16px;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+.venda-info-section {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    flex-wrap: wrap;
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-size: 14px;
+      color: #7a7a7a;
+      font-weight: 600;
+      min-width: 120px;
+      margin-right: 12px;
+      font-family: 'Muli', sans-serif;
+    }
+
+    .info-value {
+      font-size: 15px;
+      color: #1b263b;
+      font-weight: 600;
+      text-align: right;
+      flex: 1;
+      font-family: 'MuliBold', sans-serif;
+    }
+
+    .valor-highlight {
+      font-size: 20px;
+      font-weight: bold;
+      color: #28a745;
+    }
+
+    .status-badge {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+  }
+}
+
+.parceiro-info-section {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  h3 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1b263b;
+    font-family: 'MuliBold', sans-serif;
+  }
+
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-label {
+      font-size: 13px;
+      color: #7a7a7a;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 14px;
+      color: #1b263b;
+      font-weight: 500;
+      text-align: left;
+      line-height: 1.5;
+    }
+  }
+}
+
+.feedback-section {
+  margin-top: 0;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1b263b;
+    font-family: 'MuliBold', sans-serif;
+  }
+
+  .star-rating-container {
+    margin-bottom: 20px;
+
+    .rating-label {
+      display: block;
+      font-size: 14px;
+      color: #7a7a7a;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .star-rating {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+    }
+  }
+
+  .feedback-text-container {
+    margin-bottom: 16px;
+
+    .feedback-textarea {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      font-family: 'Muli', sans-serif;
+      font-size: 14px;
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+    }
+  }
+}
+
+ion-modal {
+  --border-radius: 0;
+}
+
+.modal-wrapper-venda {
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  // --background: linear-gradient(135deg, #672438 0%, #8A1C35 100%);;;
+  /* bordô do mockup */
+  padding: 15px 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: #fff;
+  font-family: 'MuliBold'
+}
+
+.user-info h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-company {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.user-points {
+  margin: 5px 0 0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
